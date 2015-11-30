@@ -72,7 +72,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => 'root',
-		'database' => 'web',
+		'database' => 'projectweb',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
