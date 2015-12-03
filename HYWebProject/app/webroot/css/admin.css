@@ -1,0 +1,303 @@
+	@charset "utf-8";
+	/* CSS Document */
+	
+	
+	html{
+		background-color:white;
+	}
+
+	#logo img{
+		width:300px;
+	}
+
+	#logo{
+		width:450px;
+		margin:auto;
+		margin-top:100px;
+		text-align:center;
+	}
+
+	#form{
+		font-family:Brown,"Verdana",sans-serif;
+		color:blue;
+		margin:auto;
+		margin-top:50px;
+		text-align:center;
+		width:300px;
+	}
+
+	#form input[type="text"]{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+
+	input[type="submit"] {
+		width:100px;
+		font-size:14px;
+	}
+
+
+	/*start to adminSetup */
+
+	header{
+		background-color:black;
+		color:#FFFBF0;
+		overflow:auto;
+	}
+
+	#headerwrap{
+	margin:auto;
+	width:1300px;
+	font-family:Brown,"Verdana",sans-serif;
+	}
+
+	#headerwrap div{
+		float:left;
+		margin-top:12px;
+		margin-bottom:12px;
+		margin-right:25px;
+		padding-top:10px;
+		padding-bottom:10px;
+		padding-right:10px;
+		padding-left:10px;
+		font-size:15px;
+	}
+	
+	
+	#headerwrap div:not(#welcome):not(#logout):hover{
+	color:#1cace2;
+	cursor:pointer;
+	}
+	
+	#Highlight{
+		color:black;
+		background-color:orange;
+		font-weight:bold;
+	}
+	
+	#home img{
+		padding-top:3px;
+		padding-bottom:3px;
+		width:50px;
+		float:right;
+		margin-right:50px;
+	}
+	
+	#home img:hover{
+		cursor:pointer;
+	}
+
+	#welcome{
+		color:#1cace2;
+		float:right;
+		margin-left:150px;
+	}
+	
+	#welcome:hover{
+		cursor:pointer;
+		color:orange;
+	}
+	
+	#logout{
+		color:gray;
+	}
+	
+	#logout:hover{
+		cursor:pointer;
+		color:orange;
+	}
+	
+
+	#formSetup{
+		width:500px;
+		margin-top:30px;
+		margin-left:100px;
+		font-size:15px;
+		font-family:Black,"Verdana",sans-serif;
+	}
+	
+	#formSetup select{
+		height:30px;
+	}
+	
+	#formSetup select:first-child{
+		margin-left:100px;
+		width:175px;
+	}
+	
+	#formSetup p{
+		margin-top:30px;
+	}
+	
+	#formSetup input[type="text"]{
+		margin-left:40px;
+	}
+	
+	#formSetup input[type="submit"]{
+		margin-top:20px;
+		width:150px;
+	}
+
+	/*
+		continue to form entry
+	*/
+	
+	#formEntry{
+		width:1000px;
+		margin-top:30px;
+		margin-left:100px;
+		font-size:15px;
+		font-family:Black,"Verdana",sans-serif;
+		overflow:auto;
+	}
+	
+	#formEntry input[type="text"]:first-child{
+		margin-left:40px;
+		margin-right:30px;
+	}
+	
+	#formEntry p:first-child input[type="text"]{
+		margin-left:25px;
+	}
+	
+	#formEntry input[type="text"]:nth-child(2){
+		width:300px;
+		margin-right:20px;
+	}
+	
+	#formEntry #saveBtn{
+		float:right;
+		margin-right:315px;
+	}
+	
+	/*
+		continue to form Audience
+	*/
+	
+	#formAudience{
+		width:800px;
+		margin-top:30px;
+		margin-left:100px;
+		font-size:15px;
+		font-family:Black,"Verdana",sans-serif;
+		overflow:auto;
+	}
+	
+	#formAudience input[type="text"]:first-child{
+		margin-left:50px;
+		margin-right:30px;
+	}
+	
+	#formAudience p:first-child input[type="text"]{
+		margin-left:27px;
+	}
+	
+	#formAudience #saveBtn{
+		float:right;
+		margin-right:200px;
+	}
+	
+	/*
+		continue to form Audience
+	*/
+	
+	#formAudition{
+		width:1000px;
+		margin-top:30px;
+		margin-left:100px;
+		font-size:15px;
+		font-family:Black,"Verdana",sans-serif;
+		overflow:auto;
+	}
+	
+	#formAudition input[type="text"]:first-child{
+		margin-right:30px;
+	}
+	
+	#formAudition input[type="text"]:nth-child(2){
+		width:300px;
+		margin-right:20px;
+	}
+	
+	#formAudition #saveBtn{
+		float:right;
+		margin-right:355px;
+	}
+	
+	/*
+		continue to form Election
+	*/
+	
+	#formElection{
+		width:1200px;
+		margin-top:30px;
+		margin-left:100px;
+		font-size:15px;
+		font-family:Black,"Verdana",sans-serif;
+		overflow:auto;
+	}
+	
+	#formElection input[type="text"]:first-child{
+		margin-right:30px;
+	}
+	
+	#formElection input[type="text"]:nth-child(2){
+		width:300px;
+		margin-right:20px;
+	}
+	
+	#formElection input[type="text"]:nth-child(3){
+		width:80px;
+		margin-right:20px;
+	}
+	
+	#formElection p input[type="submit"]:nth-child(1){
+		width:75px;
+	}
+	
+	#formElection #saveBtn{
+		float:right;
+		margin-right:392px;
+	}
+	
+	/*
+		continue to form View
+	*/
+	
+	#formView{
+		width:1200px;
+		margin-top:30px;
+		margin-left:100px;
+		font-size:15px;
+		font-family:Black,"Verdana",sans-serif;
+		overflow:auto;
+	}
+	
+	#formView input[type="text"]:first-child{
+		margin-right:30px;
+	}
+	
+	#formView input[type="text"]:nth-child(2){
+		width:300px;
+		margin-right:20px;
+	}
+	
+	#formView input[type="text"]:nth-child(3){
+		width:80px;
+		margin-right:20px;
+	}
+	
+	#formView p input[type="submit"]:nth-child(1){
+		width:75px;
+	}
+	
+	#formView #saveBtn{
+		float:right;
+		margin-right:392px;
+	}
+	
+	
+	
+	
