@@ -7,10 +7,9 @@ class Admin extends AppModel
 	public function checkLoginInfo($login, $password, $ip_address)
 	{
 		//We send a query in order to find an admin having the login information received
-        $results = $this->find('first', array('conditions' => array(
-        		'id_admin' => $login, 
-        		'password' => $hash, 
-        		'ip' => $ip_address)));
+        $results = $this->find('first', array('conditions' => array('id_admin' => $login, 
+													        		'password' => $hash, 
+													        		'ip' => $ip_address)));
 		
         $hash = Security::hash($password);
 		
