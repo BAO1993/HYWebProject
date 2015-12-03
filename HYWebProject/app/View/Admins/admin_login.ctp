@@ -12,16 +12,20 @@ if (isset($status))
 }
 ?>
 
+<!-- Form creation with the CakePHP class "Form": -->
 
-<?php 
-//Form creation with the CakePHP class "Form":
+<?php echo $this->Form->create('AdminLoginForm');?>
 
-echo $this->Form->create('AdminLoginForm');
-echo $this->Form->input('id');
-echo $this->Form->input('password');
-echo $this->Form->end('Submit');
+<p>
+	<?php echo $this->Form->input('id');?>
+</p>
+<p>
+	<?php echo $this->Form->input('password');?>
+</p>
 
-?>
+<?php echo $this->Form->end('Submit');?>
+
+
 
 <!-- 
 This code is almost the same than the following but here it is better to use CakePHP

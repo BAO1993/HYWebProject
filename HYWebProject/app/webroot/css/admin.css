@@ -3,7 +3,7 @@
 	
 	
 	html{
-		background-color:white;
+		background-color: white;
 	}
 
 	#logo img{
@@ -17,7 +17,7 @@
 		text-align:center;
 	}
 
-	#form{
+	#form,#AdminLoginFormAdminLoginForm{
 		font-family:Brown,"Verdana",sans-serif;
 		color:blue;
 		margin:auto;
@@ -26,14 +26,18 @@
 		width:300px;
 	}
 
-	#form input[type="text"]{
+	#form input[type="text"],
+	#AdminLoginFormAdminLoginForm input[type="text"], 
+	#AdminLoginFormAdminLoginForm input[type="password"]
+	{
 		display:block;
 		margin-left:auto;
 		margin-right:auto;
 	}
 
 
-	input[type="submit"] {
+	input[type="submit"] 
+	{
 		width:100px;
 		font-size:14px;
 	}
@@ -110,7 +114,8 @@
 	}
 	
 
-	#formSetup{
+	#formSetupSetupForm
+	{
 		width:500px;
 		margin-top:30px;
 		margin-left:100px;
@@ -118,24 +123,34 @@
 		font-family:Black,"Verdana",sans-serif;
 	}
 	
-	#formSetup select{
+	#formSetupSetupForm select
+	{
 		height:30px;
 	}
 	
-	#formSetup select:first-child{
-		margin-left:100px;
+	#formSetupSetupForm select#formSetupRound
+	{
+		margin-left:106px;
+		margin-top:20px;
 		width:175px;
 	}
 	
-	#formSetup p{
-		margin-top:30px;
+	#formSetupSetupForm select#formSetupRoundNumber
+	{
+		margin-left:42px;
+		margin-top:20px;
+		width:40px;
 	}
 	
-	#formSetup input[type="text"]{
+	#formSetupSetupForm input[type="text"]
+	{
 		margin-left:40px;
+		margin-top:50px;
+		width:175px;
 	}
 	
-	#formSetup input[type="submit"]{
+	#formSetupSetupForm input[type="submit"]
+	{
 		margin-top:20px;
 		width:150px;
 	}

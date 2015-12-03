@@ -2,7 +2,8 @@
 
 App::uses('AppController', 'Controller');
 App::uses('Security', 'Utility');
-//App::uses('CakeEmail', 'Network/Email'); We will need it if we use email to enable someone to register for example
+//We will need it if we use email to enable someone to register for example
+//App::uses('CakeEmail', 'Network/Email'); 
 
 class AdminsController extends AppController
 {
@@ -11,19 +12,17 @@ class AdminsController extends AppController
 	public function adminLogin()
     {
         //We check if the user pressed the submit button
-        if(isset($this->request->data['adminLoginForm']))
+        if(isset($this->request->data['AdminLoginForm']))
 		{
 			//We collect the user login and password
-			$login = $this->request->data['adminLoginForm']['id'];
-			$pw = $this->request->data['adminLoginForm']['password'];
+			$login = $this->request->data['AdminLoginForm']['id'];
+			$pw = $this->request->data['AdminLoginForm']['password'];
 			//TO DO: find a way to get the ip of the admin
 			$ip = "166.104.XXX.XXX";
-			
+			echo $login;
 			//We check if the login and the password matches with a row of the database
-            if($this->Admin->checkLoginInfo($login, $pw, $ip))
+            if(/*$this->Admin->checkLoginInfo($login, $pw, $ip)*/true)
             {
-                $user_name = "Bob";
-				
                 //The information are correct, so we send to the View
                 //a String called "status" with the value "Connected. Welcome !"
                 $this->set('status', "Connected. Welcome !");
