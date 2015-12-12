@@ -5,7 +5,7 @@ App::uses('Security', 'Utility');
 
 class UsersController extends AppController
 {
-	public $uses = array('User');
+	public $uses = array('User','Team');
 	
 /*	$iphone = strpos($_SERVER['HTTP_USER_AGENT'],"iPhone");
 	$android = strpos($_SERVER['HTTP_USER_AGENT'],"Android");
@@ -48,9 +48,12 @@ class UsersController extends AppController
 		    
 			if($this->User->checkCode($user['User']['dept'],$user['User']['name'],$this->request->data['Code']['invitation_code']) == 1)
 			{
-				$this->Session->write('Connected',$datas['User']['id_user']);
-			
+				
+				$this->Session->write('Connected',$user['User']['id_user']);
+				//error_log("function invitation info:". $this->Session->read('Info'));
+				//error_log("function invitation connection:". $this->Session->read('Connected'));
 				$this->redirect('vote');
+				
 			}
 			else
 			{
@@ -62,23 +65,17 @@ class UsersController extends AppController
 	}
 	
 	public function vote(){
+		
+		$datas=$this->Team->find('all');
+		$this->set("teams",$datas);
+		
 	
-	/*	if( isset($this->request->data['Code'])){
-			$user_id = $this->Session->read('Info');
-			$user=$this->User->find('first', array('conditions' => array('user_id' => $user_id)));
+		if( isset($this->request->data['Team'])){
+			
+
+			
 	
-			if(($this->User->checkCode($datas['User']['dept'],$datas['User']['name'],$this->request->data['Code']['invitation_code'])) == true)
-			{
-				$this->Session->write('Connected',$datas['User']['id_user']);
-					
-				$this->redirect('vote');
-			}
-			else
-			{
-				$this->set('message', "Wrong code, pease try again");
-			}
-	
-		}*/
+		}
 	
 	}
 	
@@ -103,25 +100,18 @@ class UsersController extends AppController
 		$id_connec = $this->Session->read('Connected');
 		$id_info = $this->Session->read('Info');
 	
-	/*	if($id_info == NULL && $this->request->params['action'] != 'user_login')
+		if($id_info == NULL && $this->request->params['action'] != 'user_login')
 		{
 			$this->redirect(array('controller' => 'Users', 'action' => 'user_login'));
 		}
-		else if($id_connec == NULL && $this->request->params['action'] != 'invitation')
+
+			
+		if($id_info != NULL && $id_connec == NULL && $this->request->params['action'] != 'invitation' )	
 		{
-			$this->redirect('invitation');
+			//error_log("beforeFilter:".$id_connec);
+			$this->redirect(array('controller' => 'Users', 'action' => 'invitation'));
 		}
-		else if($id_connec != NULL && $this->request->params['action'] == 'vote' )
-		{
-			$this->redirect('vote');
-		}
-		else if($id_connec != NULL && $this->request->params['action'] == 'logout' )
-		{
-			$this->redirect('logout');
-		}
-		else {
-			$this->redirect('died');
-		}*/
+
 	}
 	
 }
