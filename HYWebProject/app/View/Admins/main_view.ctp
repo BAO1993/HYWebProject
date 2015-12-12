@@ -8,7 +8,7 @@
                 <div>6. View</div>
 				
 				<div id="welcome">
-						Welcome, Admin ...
+						Welcome, <?= $adminLogin ?>
 				</div>
 				<div id="logout">
 					<a href="Adminlogin.html">
@@ -30,9 +30,16 @@
 		
 	<?php
 	
-	echo $this->Form->create('formSetup');
 	
-	echo $this->Form->input('round', array('options' => array(	'Qualifying'=>'Qualifying Round',
+	if (isset($status2))
+	{
+    	echo $status2;
+	}
+
+	
+	echo $this->Form->create('SetupForm');
+	
+	echo $this->Form->input('round', array('options' => array('Qualifying'=>'Qualifying Round',
 																		'Final'=>'Final round')));
 
 	echo $this->Form->input('round Number', array('options' => array(	'1'=>'1',
