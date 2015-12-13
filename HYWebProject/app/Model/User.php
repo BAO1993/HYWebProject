@@ -33,6 +33,35 @@ class User extends AppModel
     	}*/
     	return $results;
     }
+    
+    
+    public function saveUsers($usersList, $code)
+    {
+    	//First we delete all previous users    
+    	$this->query('TRUNCATE TABLE users;');
+    
+    	//Then, we stored each new user inside the users table.
+    	for($i = 0; $i < count($usersList)/3; $i++)
+    	{
+    		$attendance = false;
+    		
+    		if($usersList['check'.strval($i)] == "1")
+    		{
+    			$attendance = true;
+    		}
+    		
+    		$this->create();
+    		$newUser = array(	'name'=>$usersList['name'.strval($i)],
+    							'dept'=>$usersList['department'.strval($i)],
+    							'inv_code'=>$code,
+    							'confirm'=>$attendance);
+    		$this->save($newUser);
+    		$this->clear();
+    	}
+    
+    }
+    
+    
 	
 	
 	

@@ -190,7 +190,7 @@ class AdminsController extends AppController
     		
     		if($is_well_completed)
     		{
-    			$this->Team->saveTeam($tform);
+    			$this->Team->saveTeams($tform);
     			
     			$this->Session->write('currentStep','Audience');
     			 
@@ -227,31 +227,31 @@ class AdminsController extends AppController
     	
     	//If admin clicks on the Save button, we check if he wrote something inside each field
     	if(isset($this->request->data['AudienceForm']))
-    	{/*
-    		$tform = $this->request->data['TeamsForm'];
+    	{var_dump($this->request->data['AudienceForm']);
+    		$aform = $this->request->data['AudienceForm'];
     		$is_well_completed = true;
     	
-    		for($i = 0; $i < count($tform)/2; $i++)
+    		for($i = 0; $i < count($aform)/3; $i++)
     		{
-    			if($tform['teamName'.strval($i)] === "" || $tform['subject'.strval($i)] === "")
+    			if($aform['name'.strval($i)] === "" || $aform['department'.strval($i)] === "")
     			{
     				$is_well_completed = false;
-    				$i = count($tform);
+    				$i = count($aform);
     			}
     		}
     	
     		if($is_well_completed)
     		{
-    			$this->Team->saveTeam($tform);
+    			$this->User->saveUsers($aform,$this->Session->read('currentInvitationCode'));
     			 
-    			$this->Session->write('currentStep','Audience');
+    			$this->Session->write('currentStep','Audition');
     	
     			$this->redirect('mainView');
     		}
     		else
     		{
-    			$this->set('formStatus','Please, file each Team Name and Subject fields correctly.');
-    		}*/
+    			$this->set('formStatus','Please, file each Name and Departement Name fields correctly.');
+    		}
     	}
     	
     	

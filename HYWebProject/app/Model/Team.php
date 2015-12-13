@@ -4,7 +4,7 @@ App::uses('AppModel', 'Model');
 
 class Team extends AppModel
 {
-	public function saveTeam($teamsList)
+	public function saveTeams($teamsList)
 	{
 		//First we delete all previous teams
 		//In order to do that, we need to drop the foreign key constraints we have on the team_results table
