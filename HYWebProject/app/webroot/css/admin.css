@@ -16,7 +16,13 @@
 		margin-top:100px;
 		text-align:center;
 	}
-
+	
+	#error_login{
+		color:red;
+		font-size:12px;
+		font-style:bold;
+	}
+	
 	#form,#AdminLoginFormAdminLoginForm{
 		font-family:Brown,"Verdana",sans-serif;
 		color:blue;
@@ -154,6 +160,17 @@
 		margin-top:20px;
 		width:150px;
 	}
+	
+	#form_status{
+		color:maroon;
+		margin-left:100px;
+		
+	}
+	
+	#round_status{
+		color:red;
+		
+	}
 
 	/*
 		continue to form entry
@@ -189,6 +206,44 @@
 		float:right;
 		margin-right:315px;
 	}
+	
+	#NumberEntryFormMainViewForm{
+		width:600px;
+		overflow:auto;
+		margin-left:40px;
+	}
+	
+	#NumberEntryFormMainViewForm div{
+		float:left;
+		margin-right:10px;
+		margin-bottom:20px;
+	}
+	
+	#NumberEntryFormMainViewForm label{
+		margin-right:10px;
+	}
+	
+	.team_input label{
+		margin-right:10px;
+	}
+	
+	.team_input{
+		width:700px;
+		overflow:auto;
+		margin-left:40px;
+	}
+	
+	.team_input div{
+		float:left;
+		margin-right:30px;
+		margin-bottom:10px;
+	}
+	
+	#TeamsFormMainViewForm .submit{
+		margin-top:10px;
+		margin-left:40px;
+	}
+	
 	
 	/*
 		continue to form Audience

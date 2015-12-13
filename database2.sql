@@ -44,5 +44,3 @@ CREATE TABLE team_results (
 
 
 
-//ALTER TABLE `admins` ADD `login_admin` VARCHAR(20) NOT NULL ;
-
