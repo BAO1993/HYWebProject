@@ -28,7 +28,9 @@ class Round extends AppModel
 			$this->save($round);
 			$this->clear();
 			
-			return false;
+			return array(	'case'=>0,
+							'text'=>'It seems there is no election in progress. New election initialized.',
+							'currentRound'=>1);
 			
 		}
 		//If there are existing rounds, we return a message that explains where we are in the election process.
@@ -36,21 +38,27 @@ class Round extends AppModel
 		{
 			$roundNumber = -1;
 			
-			for($i = 0; $i < count($results['Round']); $i++)
+			for($i = 1; $i <= count($results); $i++)
 			{
-				if($results['Round'][strval($i)] == "in progress")
+				if($results[$i-1]['Round']['status'] == "in progress")
 				{
-					return "Round #".$i." is currently in progress. Redirecting to next step...";
+					return array(	'case'=>1,
+									'text'=>"Round #".$i." is currently in progress. Redirecting to next step...",
+									'currentRound'=>$i);
 				}
-				elseif($results['Round'][strval($i)] == "not started")
+				elseif($results[$i-1]['Round']['status'] == "not started")
 				{
 					if($roundNumber == -1)
 					{
-						return "No round has been initiated yet. Next round is the #1";
+						return array(	'case'=>2,
+										'text'=>"No round has been initiated yet. Next round is the #1",
+										'currentRound'=>1);
 					}
 					else 
 					{
-						return "Round #".$roundNumber."is the last completed round. Next step is round #".$i;
+						return array(	'case'=>3,
+										'text'=>"Round #".$roundNumber."is the last completed round. Next step is round #".$i,
+										'currentRound'=>$i);
 					}
 				}
 				else
@@ -58,7 +66,7 @@ class Round extends AppModel
 					$roundNumber = $i;
 				}
 			}
-			return $roundNumber;
+			return $roundNumber;//If there is an error...
 		}
 	}
 	

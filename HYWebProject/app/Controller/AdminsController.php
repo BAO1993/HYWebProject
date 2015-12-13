@@ -32,6 +32,8 @@ class AdminsController extends AppController
                 //By doing that, the server can remember the admin is connected.
                 $this->Session->write('connectedAdmin',$login);
                 
+                $this->Session->write('currentStep','Setup');
+                
                 //We redirect the admin to next page (the Setup page)
                 //Here, 'setup' is the name of the function of the AdminController
                 //that manages the Setup page.
@@ -51,80 +53,140 @@ class AdminsController extends AppController
     public function mainView()
     {
     	$this->set('adminLogin', $this->Session->read('connectedAdmin'));
+    	$this->set('currentStep', $this->Session->read('currentStep'));
+    	
+    	$hl = array();
+    	for($i=1;$i<=6;$i++)
+    	{
+    		$hl[strval($i)] = '';
+    	}
+    	
+    	
+    	switch($this->Session->read('currentStep'))
+    	{
+    		case 'Setup':	$this->setup();
+    						$hl['1'] = 'id="Highlight"';
+    						$this->set('hl',$hl);
+    			break;
+    			
+    		case 'Entry List':	$this->entryList();
+    							$hl['2'] = 'id="Highlight"';
+    							$this->set('hl',$hl);
+    			break;
+    				
+    		case 'Audience':$this->audience();
+				    		$hl['3'] = 'id="Highlight"';
+				    		$this->set('hl',$hl);
+    			break;
+    			
+    		case 'Audition':$this->audition();
+				    		$hl['4'] = 'id="Highlight"';
+				    		$this->set('hl',$hl);
+    			break;
+    			
+    		case 'Election':$this->election();
+				    		$hl['5'] = 'id="Highlight"';
+				    		$this->set('hl',$hl);
+    			break;
+    			
+    		case 'View':$this->finalResults();
+			    		$hl['6'] = 'id="Highlight"';
+			    		$this->set('hl',$hl);
+    			break;
+    	}
+    }
+    
+    private function setup()
+    {
+    	
+    	//If the admin clic on the submit button
+    	if(isset($this->request->data['SetupForm']))
+    	{
+    		$form = $this->request->data['SetupForm'];
+    	
+    		if($form['Invitation code'])
+    		{
+    			$this->Session->write('currentStep',$this->Session->read('nextStep'));
+    			
+    			$this->set('formStatus', "The following invitation code has been saved: ".$form['Invitation code']);
+    			
+    			$this->redirect('mainView');
+    		}
+    		else
+    		{
+    			$this->set('formStatus', "Please, file the Invitation code.");
+    		}
+    	}
     	
     	//We check if there are existing rounds, if no we create it.
     	$rs = $this->Round->checkRoundsStatus();
-    	
-    	if($rs === false)//false means there are no existing rounds
+    	 
+    	switch($rs['case'])
     	{
-    		$this->set('roundStatus', "It seems there is no election in progress. New election initialized.");
-    	}
-    	elseif($rs === true)//true means there are a round in progress
-    	{
-    		$this->set('roundStatus', $rs);
+    		//if there are no existing rounds
+    		case 0: $this->set('roundStatus', $rs['text']);
+    				$this->set('formStatus', 'Please write an invitation code for round #1 in the field below.');
+    				$this->Session->write('currentRound',1);
+    			break;
     		
-    		$this->Session->write('currentStep','Audience');
-    		
+    		//if there is a round in progress
+    		case 1:	$this->set('roundStatus', $rs['text']);
+    				$this->Session->write('nextStep','Audience');
+    				$this->Session->write('currentRound',$rs['currentRound']);
+    				$this->redirect('mainView');
+    			break;
+    			
+    		//there are existing rounds but all are "not started"
+    		case 2:	$this->set('roundStatus', $rs['text']);
+    				$this->Session->write('nextStep','Entry List');
+    				$this->set('formStatus', 'Please write an invitation code in the field below.');
+    				$this->Session->write('currentRound',1);
+    			break;
+    			
+    		//there are existing rounds and some of them are "terminated"
+    		case 3: $this->set('roundStatus', $rs['text']);
+    				$this->Session->write('nextStep','Audience');
+    				$this->Session->write('currentRound',$rs['currentRound']);
     	}
-    	else//there are existing rounds but no round in progress
-    	{
-    		$this->set('roundStatus', $rs);
-    		$this->Session->write('currentStep','Audience');
-    	}
-    	
-    	
-    	if(isset($this->request->data['SetupForm']))
-    	{
-    		$this->setup($this->request->data['SetupForm']);
-    	}
-    	elseif(isset($this->request->data['EntryListForm']))
-    	{
-    		$this->entryList($this->request->data['EntryListForm']);
-    	}
-    	elseif(isset($this->request->data['AudienceForm']))
-    	{
-    	
-    	}
-    	elseif(isset($this->request->data['AuditionForm']))
-    	{
-    	
-    	}
-    	elseif(isset($this->request->data['ElectionForm']))
-    	{
-    		 
-    	}
-    	elseif(isset($this->request->data['ViewForm']))
-    	{
-    		 
-    	}
-    	
-    	
     	
     }
     
-    private function setup($form)
+    private function entryList()
     {
-    	$round = $form['round'];
-    	$round_number = $form['round Number'];
-    	
-    	if($form['Invitation code'])
+    	if(isset($this->request->data['NumberEntryForm'])
     	{
-    		$this->set('status2', "The following invitation code has been saved: ".$form['Invitation code']);
     		
-    		//We redirect the admin to next page (the Setup page)
-    		//Here, 'setup' is the name of the function of the AdminController
-    		//that manages the Setup page.
-    		$this->redirect('mainView');
     	}
-    	else 
+    	
+    	
+    	//If admin clic on the Set button, we check if he wrote a positive integer number inferior or equal to 15
+    	if(isset($this->request->data['NumberEntryForm']) 
+    			&& preg_match('/\d{1,2}/',$this->request->data['NumberEntryForm']['Number of teams'])
+    			&& $this->request->data['NumberEntryForm']['Number of teams'] <= 15)
     	{
-    		$this->set('status2', "Please, file the form completely.");
+    		$this->Session->write('numberOfTeams',$this->request->data['NumberEntryForm']['Number of teams']);
+    		
     	}
     }
     
-    private function entryList($form)
+    private function audience()
     {
-    	
+    	 
+    }
+    
+    private function audition()
+    {
+    
+    }
+    
+    private function election()
+    {
+    
+    }
+    
+    private function finalResults()
+    {
+    
     }
 	
 	

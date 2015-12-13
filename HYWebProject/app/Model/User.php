@@ -37,4 +37,4 @@ class User extends AppModel
 	
 	
 }
->>>>>>> branch 'master' of https://github.com/BAO1993/HYWebProject
+
