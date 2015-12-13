@@ -1,19 +1,18 @@
+
 <div id="logo">
-	<img src="/HYWebProject/HYWebProject/app/webroot/img/hanyang_logo.png" alt="Sid logo" />
+	<img src="/HYWebProject/HYWebProject/app/webroot/img/user_universityLogo.jpg" alt="hanyang_logo" />
 </div>
-
-<div>
+      
+<div id="logo_mini">
+	<img src="/HYWebProject/HYWebProject/app/webroot/img/audition.png" alt="sid_logo" />
+</div>
     
-    <h2><span class="label label-default">Invitation code</span></h2>
-<?php
 
 
-echo $this->Form->create('Code');
-echo $this->Form->input('invitation_code');
-echo $this->Form->end('Connexion');
+<?php echo $this->Form->create('Code');?>
+<p><?php echo $this->Form->input('invitation_code'); ?></p>
+<?php echo $this->Form->end('Connexion');?>
 
-?>
-</div>
 
 <?php
 if (isset($message)){
