@@ -7,7 +7,7 @@ App::uses('Security', 'Utility');
 
 class AdminsController extends AppController
 {
-	public $uses = array('Admin');
+	public $uses = array('Admin','Round','User','Result','Team');
 	
 	public function adminLogin()
     {    	
@@ -51,6 +51,27 @@ class AdminsController extends AppController
     public function mainView()
     {
     	$this->set('adminLogin', $this->Session->read('connectedAdmin'));
+    	
+    	//We check if there are existing rounds, if no we create it.
+    	$rs = $this->Round->checkRoundsStatus();
+    	
+    	if($rs === false)//false means there are no existing rounds
+    	{
+    		$this->set('roundStatus', "It seems there is no election in progress. New election initialized.");
+    	}
+    	elseif($rs === true)//true means there are a round in progress
+    	{
+    		$this->set('roundStatus', $rs);
+    		
+    		$this->Session->write('currentStep','Audience');
+    		
+    	}
+    	else//there are existing rounds but no round in progress
+    	{
+    		$this->set('roundStatus', $rs);
+    		$this->Session->write('currentStep','Audience');
+    	}
+    	
     	
     	if(isset($this->request->data['SetupForm']))
     	{
