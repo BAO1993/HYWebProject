@@ -98,17 +98,45 @@ elseif($currentStep == 'Entry List')
 			echo $this->Form->input('subject'.strval($i),array('label'=>'Subject'));
 			?>
 		</div>
+		
 			<?php
 		}
 		echo $this->Form->end('Save');
 	}
-	
+}
 
 
+//////////////////////////////////////////	Audience	/////////////////////////////////////////////
 
 
+elseif($currentStep == 'Audience')
+{
+
+	echo $this->Form->create('AudienceNumberForm');
+
+	echo $this->Form->input('number',array('label'=>'Audience (How many people can vote ?)'));
+
+	echo $this->Form->end('Set');
 
 
+	if(isset($numberOfVotingPeople))
+	{
+		echo $this->Form->create('AudienceForm');
+
+		for($i = 0; $i < $numberOfVotingPeople; $i++)
+		{?>
+		<div class="team_input">
+			<?php
+			echo $this->Form->input('name'.strval($i),array('label'=>'Name'));
+			echo $this->Form->input('department'.strval($i),array('label'=>'Department'));
+			echo $this->Form->checkbox('check'.strval($i));
+			?>
+		</div>
+		
+			<?php
+		}
+		echo $this->Form->end('Save');
+	}
 }
 ?>
 

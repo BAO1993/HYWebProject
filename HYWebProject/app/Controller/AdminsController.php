@@ -206,7 +206,55 @@ class AdminsController extends AppController
     
     private function audience()
     {
-    	 
+    	//If the number of voting people has already been set
+    	if($this->Session->read('numberOfVotingPeople') !== null)
+    	{
+    		$this->set('numberOfVotingPeople',$this->Session->read('numberOfVotingPeople'));
+    	}
+    	
+    	//If admin clicks on the Set button, we check if he wrote a positive integer number inferior or equal to 15
+    	if(isset($this->request->data['AudienceNumberForm'])
+    			&& preg_match('/\d{1,2}/',$this->request->data['AudienceNumberForm']['number'])
+    			&& $this->request->data['AudienceNumberForm']['number'] <= 20)
+    	{
+    		$this->Session->write('numberOfVotingPeople',$this->request->data['AudienceNumberForm']['number']);
+    		$this->redirect('mainView');
+    	}
+    	else
+    	{
+    		$this->set('formStatus','Please, enter a valid number of voting people inferior or equal to 20.');
+    	}
+    	
+    	//If admin clicks on the Save button, we check if he wrote something inside each field
+    	if(isset($this->request->data['AudienceForm']))
+    	{/*
+    		$tform = $this->request->data['TeamsForm'];
+    		$is_well_completed = true;
+    	
+    		for($i = 0; $i < count($tform)/2; $i++)
+    		{
+    			if($tform['teamName'.strval($i)] === "" || $tform['subject'.strval($i)] === "")
+    			{
+    				$is_well_completed = false;
+    				$i = count($tform);
+    			}
+    		}
+    	
+    		if($is_well_completed)
+    		{
+    			$this->Team->saveTeam($tform);
+    			 
+    			$this->Session->write('currentStep','Audience');
+    	
+    			$this->redirect('mainView');
+    		}
+    		else
+    		{
+    			$this->set('formStatus','Please, file each Team Name and Subject fields correctly.');
+    		}*/
+    	}
+    	
+    	
     }
     
     private function audition()
