@@ -14,7 +14,7 @@
 <?php
 if (isset($status))
 {?>
-    <p> <?=$status;?></p>
+    <p id="error_login"> <?=$status;?></p>
  <?php
 }
 ?>

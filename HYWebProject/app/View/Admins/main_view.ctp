@@ -28,7 +28,7 @@
 <?php
 	if (isset($formStatus))
 	{?>
-    	<p><?= $formStatus;?></p>
+    	<p id="form_status"><?= $formStatus;?></p>
 <?php
 	}
 
@@ -41,7 +41,7 @@ if($currentStep == 'Setup')
 	
 ?>
 
-	<p><?= $roundStatus ?></p>
+	<p id="round_status"><?= $roundStatus ?></p>
 	
 <?php
 
