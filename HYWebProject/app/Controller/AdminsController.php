@@ -153,10 +153,10 @@ class AdminsController extends AppController
     
     private function entryList()
     {
-    	if(isset($this->request->data['NumberEntryForm'])
+    	/*if(isset($this->request->data['NumberEntryForm'])
     	{
     		
-    	}
+    	}*/
     	
     	
     	//If admin clic on the Set button, we check if he wrote a positive integer number inferior or equal to 15

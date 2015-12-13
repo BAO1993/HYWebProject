@@ -5,16 +5,19 @@
 </div>
 
 
-<?php
-if (isset($status))
-{
-    echo $status;
-}
-?>
+
 
 <!-- Form creation with the CakePHP class "Form": -->
 
 <?php echo $this->Form->create('AdminLoginForm');?>
+
+<?php
+if (isset($status))
+{?>
+    <p> <?=$status;?></p>
+ <?php
+}
+?>
 
 <p>
 	<?php echo $this->Form->input('id');?>
