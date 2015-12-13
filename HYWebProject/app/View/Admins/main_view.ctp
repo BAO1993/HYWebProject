@@ -130,6 +130,7 @@ elseif($currentStep == 'Audience')
 			echo $this->Form->input('name'.strval($i),array('label'=>'Name'));
 			echo $this->Form->input('department'.strval($i),array('label'=>'Department'));
 			echo $this->Form->checkbox('check'.strval($i));
+			echo "Attendance"; 
 			?>
 		</div>
 		
