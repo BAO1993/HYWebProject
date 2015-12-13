@@ -91,10 +91,14 @@ elseif($currentStep == 'Entry List')
 		echo $this->Form->create('TeamsForm');
 
 		for($i = 0; $i < $numberOfTeams; $i++)
-		{
-			echo $this->Form->input('Team name');
-
-			echo $this->Form->input('Subject');
+		{?>
+		<div class="team_input">
+			<?php
+			echo $this->Form->input('teamName'.strval($i),array('label'=>'Team Name'));
+			echo $this->Form->input('subject'.strval($i),array('label'=>'Subject'));
+			?>
+		</div>
+			<?php
 		}
 		echo $this->Form->end('Save');
 	}

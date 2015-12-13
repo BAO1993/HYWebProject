@@ -11,7 +11,7 @@ class AdminsController extends AppController
 	
 	public function adminLogin()
     {    	
-        //We check if the user pressed the submit button
+        //We check if the user clicks the submit button
         if(isset($this->request->data['AdminLoginForm']))
 		{
 			//We collect the user login and password
@@ -98,8 +98,7 @@ class AdminsController extends AppController
     
     private function setup()
     {
-    	
-    	//If the admin clic on the submit button
+    	//If the admin clicks on the submit button
     	if(isset($this->request->data['SetupForm']))
     	{
     		$form = $this->request->data['SetupForm'];
@@ -108,7 +107,8 @@ class AdminsController extends AppController
     		{
     			$this->Session->write('currentStep',$this->Session->read('nextStep'));
     			
-    			$this->set('formStatus', "The following invitation code has been saved: ".$form['Invitation code']);
+    			$this->Session->write('currentInvitationCode',$form['Invitation code']);
+    			//$this->set('formStatus', "The following invitation code has been saved: ".$form['Invitation code']);
     			
     			$this->redirect('mainView');
     		}
@@ -160,7 +160,7 @@ class AdminsController extends AppController
     	}
     	
     	
-    	//If admin clic on the Set button, we check if he wrote a positive integer number inferior or equal to 15
+    	//If admin clicks on the Set button, we check if he wrote a positive integer number inferior or equal to 15
     	if(isset($this->request->data['NumberEntryForm']) 
     			&& preg_match('/\d{1,2}/',$this->request->data['NumberEntryForm']['Number of teams'])
     			&& $this->request->data['NumberEntryForm']['Number of teams'] <= 15)
@@ -172,6 +172,36 @@ class AdminsController extends AppController
     	{
     		$this->set('formStatus','Please, enter a valid number of teams inferior or equal to 15.');
     	}
+    	
+    	//If admin clicks on the Save button, we check if he wrote something inside each field
+    	if(isset($this->request->data['TeamsForm']))
+    	{
+    		$tform = $this->request->data['TeamsForm'];
+    		$is_well_completed = true;
+    		
+    		for($i = 0; $i < count($tform)/2; $i++)
+    		{
+    			if($tform['teamName'.strval($i)] === "" || $tform['subject'.strval($i)] === "")
+    			{
+    				$is_well_completed = false;
+    				$i = count($tform);
+    			}
+    		}
+    		
+    		if($is_well_completed)
+    		{
+    			$this->Team->saveTeam($tform);
+    			
+    			$this->Session->write('currentStep','Audience');
+    			 
+    			$this->redirect('mainView');
+    		}
+    		else
+    		{
+    			$this->set('formStatus','Please, file each Team Name and Subject fields correctly.');
+    		}
+    	}
+    	
     }
     
     private function audience()
