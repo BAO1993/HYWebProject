@@ -139,6 +139,50 @@ elseif($currentStep == 'Audience')
 		echo $this->Form->end('Save');
 	}
 }
+
+//////////////////////////////////////////	Audition	/////////////////////////////////////////////
+
+elseif($currentStep == 'Audition')
+{
+	echo $this->Form->create('AudienceForm');
+
+	for($i = 0; $i < $numberOfTeams; $i++)
+	{?>
+		<div class="team_input">
+		
+			<p>Team Name: <?= $teamList[$i]['name'] ?></p>
+			<p>Subject: <?= $teamList[$i]['subject'] ?></p>
+			
+			<?php
+			
+			echo $this->Form->input('radio'.strval($i), array(
+    												'before' => '--avant--',
+    												'after' => '--après--',
+    												'between' => '--entre---',
+    												'separator' => '--séparateur--',
+    												'options' => array('Pass', 'Fail')));
+			?>
+		</div>
+		
+			<?php
+	}
+	echo $this->Form->end('Save');
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
 
 

@@ -227,7 +227,7 @@ class AdminsController extends AppController
     	
     	//If admin clicks on the Save button, we check if he wrote something inside each field
     	if(isset($this->request->data['AudienceForm']))
-    	{var_dump($this->request->data['AudienceForm']);
+    	{
     		$aform = $this->request->data['AudienceForm'];
     		$is_well_completed = true;
     	
@@ -259,6 +259,11 @@ class AdminsController extends AppController
     
     private function audition()
     {
+    	$this->set('numberOfTeams',$this->Session->read('numberOfTeams'));
+    	
+    	$this->set('teamList',$this->Team->find('all'));
+    	
+    	
     
     }
     
