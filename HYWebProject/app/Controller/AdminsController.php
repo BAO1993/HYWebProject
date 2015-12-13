@@ -153,10 +153,11 @@ class AdminsController extends AppController
     
     private function entryList()
     {
-    	/*if(isset($this->request->data['NumberEntryForm'])
+    	//If the number of team has already been set
+    	if($this->Session->read('numberOfTeams') !== null)
     	{
-    		
-    	}*/
+    		$this->set('numberOfTeams',$this->Session->read('numberOfTeams'));
+    	}
     	
     	
     	//If admin clic on the Set button, we check if he wrote a positive integer number inferior or equal to 15
@@ -165,7 +166,11 @@ class AdminsController extends AppController
     			&& $this->request->data['NumberEntryForm']['Number of teams'] <= 15)
     	{
     		$this->Session->write('numberOfTeams',$this->request->data['NumberEntryForm']['Number of teams']);
-    		
+    		$this->redirect('mainView');
+    	}
+    	else
+    	{
+    		$this->set('formStatus','Please, enter a valid number of teams inferior or equal to 15.');
     	}
     }
     

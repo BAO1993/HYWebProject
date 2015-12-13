@@ -94,10 +94,9 @@ elseif($currentStep == 'Entry List')
 		{
 			echo $this->Form->input('Team name');
 
-			echo $this->Form->input('Subject');		
+			echo $this->Form->input('Subject');
 		}
 		echo $this->Form->end('Save');
-		
 	}
 	
 
