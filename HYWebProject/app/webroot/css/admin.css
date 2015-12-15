@@ -42,7 +42,7 @@
 	}
 
 
-	input[type="submit"] 
+	.submit input[type="submit"]
 	{
 		width:100px;
 		font-size:14px;
