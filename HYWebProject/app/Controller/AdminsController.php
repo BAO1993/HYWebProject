@@ -60,8 +60,7 @@ class AdminsController extends AppController
     	{
     		$hl[strval($i)] = '';
     	}
-    	
-    	
+		
     	switch($this->Session->read('currentStep'))
     	{
     		case 'Setup':	$this->setup();
