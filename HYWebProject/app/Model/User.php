@@ -44,7 +44,22 @@ class User extends AppModel
     	else{
     		return false;
     	}*/
+    	
     	return $results;
+    }
+    
+    public function checkPresence($id)
+    {
+    	$results = $this->findById($id);
+    	 
+    	if($results["User"]["confirm"]=="1")
+    	{
+    	return true;
+    	}
+    	else{
+    	return false;
+    	}
+    	
     }
     
     
