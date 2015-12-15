@@ -23,7 +23,8 @@ CREATE TABLE teams (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,/* id_team => id*/
     name VARCHAR(50),
 	subject VARCHAR(255),
-	out_game BOOLEAN NOT NULL default false
+	out_game BOOLEAN NOT NULL default false,
+	in_final BOOLEAN NOT NULL default false
 );
 
 CREATE TABLE rounds (
@@ -49,6 +50,10 @@ CREATE TABLE team_results (
 
 /*ALTER TABLE team_results ADD CONSTRAINT fk_result FOREIGN KEY (id_result) REFERENCES results(id);
 ALTER TABLE team_results ADD CONSTRAINT fk_team FOREIGN KEY (id_team) REFERENCES teams(id);*/
+
+INSERT INTO admins (ip, login,password)
+ VALUES
+ ('42.42.42.42', 'bob','92cfceb39d57d914ed8b14d0e37643de0797ae56');
 
 INSERT INTO users (name, dept, inv_code)
  VALUES
