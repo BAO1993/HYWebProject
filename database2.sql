@@ -3,7 +3,7 @@ DROP DATABASE IF EXISTS projectweb;
 CREATE DATABASE projectweb;
 USE projectweb;
 CREATE TABLE users (
-    id_user INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50),
 	dept VARCHAR(50),
     confirm BOOLEAN NOT NULL default false,

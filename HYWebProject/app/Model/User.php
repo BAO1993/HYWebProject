@@ -9,14 +9,27 @@ class User extends AppModel
 	{
 	
         $results = $this->find('count', array('conditions' => array('dept' => $dept,'name' => $name)));
-
-		if($results!=0)
+   
+		if($results!=0 )
 		{
 			return true;
 		}
 		else{
 			return false;
 		}
+    }
+    
+    public function checkVote($dept, $name)
+    {
+    	$results = $this->find('first', array('conditions' => array('dept' => $dept,'name' => $name)));
+    	 
+    	if($results['User']['voted']=="0" )
+    	{
+    		return true;
+    	}
+    	else{
+    		return false;
+    	}
     }
 	
     

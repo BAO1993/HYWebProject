@@ -36,15 +36,21 @@ class UsersController extends AppController
 		
 			if( isset($this->request->data['Login'])){
 			
-				if(($this->User->checkLogin($this->request->data['Login']['department'],$this->request->data['Login']['name'])) == true)
+				if(($this->User->checkVote($this->request->data['Login']['department'],$this->request->data['Login']['name'])) == true)
 				{
-					$datas = $this->User->find('first', array('conditions' => array('name' => $this->request->data['Login']['name'])));
-					$this->Session->write('Info',$datas['User']['id_user']);
-					$this->redirect('invitation');
+					if(($this->User->checkLogin($this->request->data['Login']['department'],$this->request->data['Login']['name'])) == true)
+					{
+						$datas = $this->User->find('first', array('conditions' => array('name' => $this->request->data['Login']['name'])));
+						$this->Session->write('Info',$datas['User']['id']);
+						$this->redirect('invitation');
+					}
+					else
+					{
+						$this->set('message', "Incorrect information, please try again");
+					}
 				}
-				else
-				{
-					$this->set('message', "Incorrect information, please try again");
+				else{
+					$this->set('message', "You have already voted!");
 				}
 	
 			}
@@ -64,13 +70,13 @@ class UsersController extends AppController
 		
 		if( isset($this->request->data['Code'])){
 			$user_id = $this->Session->read('Info');
-			$user=$this->User->find('first', array('conditions' => array('id_user' => $user_id)));
+			$user=$this->User->find('first', array('conditions' => array('id' => $user_id)));
 		    $this->set("info",$this->User->checkCode($user['User']['dept'],$user['User']['name'],$this->request->data['Code']['invitation_code']));
 		    
 			if($this->User->checkCode($user['User']['dept'],$user['User']['name'],$this->request->data['Code']['invitation_code']) == 1)
 			{
 				
-				$this->Session->write('Connected',$user['User']['id_user']);
+				$this->Session->write('Connected',$user['User']['id']);
 				$this->redirect('team');
 				
 			}
@@ -123,7 +129,10 @@ class UsersController extends AppController
 			$this->Result->save($data);
 			
 			$user_id=$this->Session->read('Connected');
-			$us = array('id_user' => $user_id, 'voted' => '1');
+			$us = array('id' => $user_id, 'voted' => '1');
+			
+			//$this->User->read(null,$user_id);
+			//$this->set('voted', '1');
 			$this->User->save($us);
 			
 			$this->Session->write('Voted',"true");
