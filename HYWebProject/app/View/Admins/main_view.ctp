@@ -173,28 +173,24 @@ elseif($currentStep == 'Audition')
 
 //////////////////////////////////////////	Election	/////////////////////////////////////////////
 
-elseif($currentStep == 'Audition')
+elseif($currentStep == 'Election')
 {
-	//echo $this->Form->create('AudienceForm');
+	echo $this->Form->create('ElectionForm');
 
 	for($i = 0; $i < $numberOfTeams; $i++)
 	{?>
-		<div class="team_input">
+		<div class="team_election">
 		
-			<p>Team Name: <?= $teamList[$i]['Team']['name'] ?></p>
-			<p>Subject: <?= $teamList[$i]['Team']['subject'] ?></p>
-			<p>Prize: <?= $teamList[$i]['Team']['prize'] ?></p>
-			
-			<?php
+			<p>Team Name: <em><?= $teamList[$i]['name'] ?></em></p>
+			<p>Subject: <em><?= $teamList[$i]['subject'] ?></em></p>
+			<p>Prize: <em><?= $teamList[$i]['prize'] ?></em></p>
 			
 			
-
-			?>
 		</div>
 		
 			<?php
 	}
-	//echo $this->Form->end('Save');
+	echo $this->Form->end('Save');
 
 }
 

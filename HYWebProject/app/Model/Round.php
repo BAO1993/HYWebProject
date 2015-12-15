@@ -87,6 +87,17 @@ class Round extends AppModel
 		$this->clear();
 	}
 	
+	public function closeThisRound($currentRound)
+	{
+		$this->read(null, $currentRound);
+		$this->set('status', 'terminated');
+		$this->save();
+		$this->clear();
+	}
+	
+	
+	
+	
 	
 }
 

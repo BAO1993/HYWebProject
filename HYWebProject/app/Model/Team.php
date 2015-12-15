@@ -42,6 +42,42 @@ class Team extends AppModel
 		}
 	}
 	
+	public function getTeamAndPrize()
+	{
+		$list = array();
+		
+		$tl = $this->find('all');
+		
+		if(!empty($tl))
+		{
+			for($i = 0; $i < count($tl); $i++)
+			{
+				$id = $tl[$i]['Team']['id'];
+				$prize = $this->query('SELECT prize FROM team_results tr,teams t,results r WHERE 
+											t.id = '.$id.' AND 
+											t.id = tr.id_team AND 
+											tr.id_result = r.id');
+				
+				if($prize == array())
+				{
+					$prize = 0;
+				}
+				
+				array_push($list,array(	'name'=>$tl[$i]['Team']['name'],
+										'subject'=>$tl[$i]['Team']['subject'],
+										'prize'=>$prize));
+			
+			}
+			
+			return $list;
+		}
+		else
+		{
+			return null;
+		}
+		
+	}
+	
 	
 	
 }

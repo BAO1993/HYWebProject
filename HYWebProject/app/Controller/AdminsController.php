@@ -271,7 +271,6 @@ class AdminsController extends AppController
     	//If the admin clicks on the "save" button, we register the results of the audition 
     	if(isset($this->request->data['AudienceForm']))
     	{
-    		var_dump($this->request->data['AudienceForm']);
     		$this->Team->checkIfNowOutOfGame(data['AudienceForm']);
     		$this->Round->enableElection($this->Session->read('currentRound'));
     		
@@ -288,9 +287,23 @@ class AdminsController extends AppController
     {
     	$this->set('numberOfTeams',$this->Session->read('numberOfTeams'));
     	 
-    	$teamList = $this->Team->find('all');
-    	 
+    	$teamList = $this->Team->getTeamAndPrize();
+    	
     	$this->set('teamList',$teamList);
+    	var_dump($teamList);
+    	
+    	
+    	
+    	//If the admin clicks on the "save" button, we close the round.
+    	if(isset($this->request->data['ElectionForm']))
+    	{
+    		
+    		$this->Round->closeThisRound($this->Session->read('currentRound'));
+    	
+    		$this->Session->write('currentStep','Election');
+    		 
+    		$this->redirect('mainView');
+    	}
     
     }
     
