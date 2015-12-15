@@ -5,7 +5,7 @@ App::uses('Security', 'Utility');
 
 class UsersController extends AppController
 {
-	public $uses = array('User','Team');
+	public $uses = array('User','Team','Round','Result');
 	
 	public function access_denied(){
 		
@@ -88,7 +88,8 @@ class UsersController extends AppController
 		
 		//checker if there is round
 		
-		$datas=$this->Team->find('all');
+	    $datas=$this->Team->find("all",array('conditions' => array( 'out_game' => "0")));
+	    
 		$this->set("teams",$datas);
 		
 	}
@@ -96,16 +97,42 @@ class UsersController extends AppController
 	public function vote(){
 		
 		//checker if the round is open
+		if($this->Session->read('Voted')=="true")
+		{
+			$this->redirect('vote_confirm');
+		}
+		else{
 		
-		$datas=$this->Team->find('all');
+		$round=$this->Round->find('first', array('conditions' => array( 'status' => "in_progress")));
+		if($round)
+		{
+		
+		$datas=$this->Team->find("all",array('conditions' => array( 'out_game' => "0"))); 
 		$this->set("teams",$datas);
 		
-	
-		if( isset($this->request->data['Team'])){
 
-	
+		if(isset($this->request->data['Team'])){
+			
+			$round=$this->Round->find('first', array('conditions' => array( 'status' => "in_progress")));
+			$team_id= $this->request->data['Team']['id'];
+			$round_id= $round["Round"]["id"];
+			$team_result=$this->Round->query("SELECT * FROM team_results where id_round=$round_id and id_team=$team_id;");
+			$result=$this->Result->findById($team_result[0]["team_results"]["id_result"]);
+			$prize=$result['Result']['prize']+$this->request->data['Team']['prize'];
+			$data = array('id' => $team_result[0]["team_results"]["id_result"], 'prize' => $prize);
+			$this->Result->save($data);
+			
+			$user_id=$this->Session->read('Connected');
+			$us = array('id_user' => $user_id, 'voted' => '1');
+			$this->User->save($us);
+			
+			$this->Session->write('Voted',"true");
+			$this->redirect('vote_confirm'); 
+		//	$this->set('res',$round);
+			
+			}
+		  }
 		}
-	
 	}
 	
 	public function vote_confirm(){
@@ -122,12 +149,14 @@ class UsersController extends AppController
 		
 	$this->Session->delete('Connected');
 	$this->Session->delete('Info');
+	$this->Session->delete('Voted');
 	}
 	
 	public function beforeFilter()
 	{
 		$id_connec = $this->Session->read('Connected');
 		$id_info = $this->Session->read('Info');
+		$vote = $this->Session->read('Voted');
 /*		$access=$this->Session->read('Access');
 		error_log("beforefilter:".$access);
 
@@ -162,7 +191,10 @@ class UsersController extends AppController
 			$this->redirect(array('controller' => 'Users', 'action' => 'invitation'));
 		}
 		
+		
 
 	}
 	
 }
+
+?>

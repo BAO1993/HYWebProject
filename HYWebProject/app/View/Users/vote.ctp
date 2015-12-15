@@ -22,20 +22,24 @@ if($teams)
 $options = array();
        foreach ($teams as $value) {
           
-          $options [$value['Team']['id_team']]= $value['Team']['name']." : ".$value['Team']['subject'];
+          $options [$value['Team']['id']]= $value['Team']['name']." : ".$value['Team']['subject'];
        }
 
-$attributes = array('legend' => false);
+$attributes = array('legend' => false,'default'=>'1');
 ?>
-<div id="vote"><?php echo $this->Form->radio('Team', $options, $attributes); ?></div>
+
+<?php echo $this->Form->create('Team');?>
+<div id="vote"><?php echo $this->Form->radio('id', $options, $attributes); ?></div>
+<div id="vote"><?php echo $this->Form->input('prize'); ?></div>
 <?php echo $this->Form->end("submit"); ?>
 
 
 <?php
 }
 else{
-echo "The vote is not disponible for the moment! Please try later.";
+echo "The vote is not started yet! Please try later.";
 }
+
 ?>
 </div>
 
@@ -43,6 +47,8 @@ echo "The vote is not disponible for the moment! Please try later.";
 if (isset($message)){
     echo $message;
 }
-
+if (isset($res)){
+   var_dump($res);
+}
 
 ?>
