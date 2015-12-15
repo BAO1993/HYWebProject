@@ -286,6 +286,11 @@ class AdminsController extends AppController
     
     private function election()
     {
+    	$this->set('numberOfTeams',$this->Session->read('numberOfTeams'));
+    	 
+    	$teamList = $this->Team->find('all');
+    	 
+    	$this->set('teamList',$teamList);
     
     }
     

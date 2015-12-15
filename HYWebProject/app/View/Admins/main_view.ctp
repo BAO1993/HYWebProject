@@ -183,7 +183,7 @@ elseif($currentStep == 'Audition')
 		
 			<p>Team Name: <?= $teamList[$i]['Team']['name'] ?></p>
 			<p>Subject: <?= $teamList[$i]['Team']['subject'] ?></p>
-			<p>Pize: <?= $teamList[$i]['Team']['prize'] ?></p>
+			<p>Prize: <?= $teamList[$i]['Team']['prize'] ?></p>
 			
 			<?php
 			
