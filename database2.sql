@@ -61,7 +61,7 @@ INSERT INTO users (name, dept, inv_code)
  ('leau', 'cs','a123456'),
  ('tommy', 'cs','a123456');
 
-INSERT INTO teams (name, subject, out_game)
+/*INSERT INTO teams (name, subject, out_game)
  VALUES
  ('team1', 'we are the best', '0'),
  ('team2', 'YOHOHO','0'),
@@ -91,6 +91,6 @@ INSERT INTO results (result,prize)
  ('4', '1', '2'),
  ('5', '2', '2'),
  ('6', '1', '3'),
- ('7', '2', '3');
+ ('7', '2', '3');*/
 
  
