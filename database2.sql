@@ -42,10 +42,13 @@ CREATE TABLE results (
 CREATE TABLE team_results (
     id_result INT UNSIGNED,
     id_team INT UNSIGNED,
-    id_round INT UNSIGNED,
-	FOREIGN KEY (id_result) REFERENCES results(id),/* Same thing : id_result => id*/
-	FOREIGN KEY (id_team) REFERENCES teams(id)/* Same thing : id_team => id*/
+    id_round INT UNSIGNED/*,
+	//FOREIGN KEY (id_result) REFERENCES results(id),*//* Same thing : id_result => id*/
+	/*FOREIGN KEY (id_team) REFERENCES teams(id)*//* Same thing : id_team => id*/
 );
+
+ALTER TABLE team_results ADD CONSTRAINT fk_result FOREIGN KEY (id_result) REFERENCES results(id);
+ALTER TABLE team_results ADD CONSTRAINT fk_team FOREIGN KEY (id_team) REFERENCES teams(id);
 
 INSERT INTO users (name, dept, inv_code)
  VALUES
