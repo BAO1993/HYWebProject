@@ -59,8 +59,9 @@ class AdminsController extends AppController
     	for($i=1;$i<=6;$i++)
     	{
     		$hl[strval($i)] = '';
+			
     	}
-		
+		$this->set('hl',$hl);
     	switch($this->Session->read('currentStep'))
     	{
     		case 'Setup':	$this->setup();
