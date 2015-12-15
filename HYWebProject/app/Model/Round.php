@@ -9,7 +9,7 @@ class Round extends AppModel
 		//We search all existing rounds
 		$results = $this->find('all');
 	
-		//If there are no rounds existing
+		//If there is no existing round
 		if(empty($results))
 		{
 			//We create it
@@ -70,5 +70,31 @@ class Round extends AppModel
 		}
 	}
 	
+	//Save the invitation code of the current round
+	public function saveCode($code,$currentRound)
+	{
+		$this->read(null, $currentRound);
+		$this->set('inv_code', $code);
+		$this->save();
+		$this->clear();
+	}
+	
+	public function enableElection($currentRound)
+	{
+		$this->read(null, $currentRound);
+		$this->set('status', 'in progress');
+		$this->save();
+		$this->clear();
+	}
+	
 	
 }
+
+
+
+
+
+
+
+
+

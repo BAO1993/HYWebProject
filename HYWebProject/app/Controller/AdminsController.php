@@ -106,7 +106,7 @@ class AdminsController extends AppController
     		if($form['Invitation code'])
     		{
     			$this->Session->write('currentStep',$this->Session->read('nextStep'));
-    			
+    			$this->Round->saveCode($form['Invitation code'],$this->Session->read('currentRound'));
     			$this->Session->write('currentInvitationCode',$form['Invitation code']);
     			//$this->set('formStatus', "The following invitation code has been saved: ".$form['Invitation code']);
     			
@@ -129,24 +129,27 @@ class AdminsController extends AppController
     				$this->Session->write('currentRound',1);
     			break;
     		
-    		//if there is a round in progress
+    		//if there is a round in progress, it means that teams are already created and users already registered,
+    		//we go to the Election step
     		case 1:	$this->set('roundStatus', $rs['text']);
-    				$this->Session->write('nextStep','Audience');
+    				$this->Session->write('nextStep','Election');
     				$this->Session->write('currentRound',$rs['currentRound']);
     				$this->redirect('mainView');
     			break;
     			
-    		//there are existing rounds but all are "not started"
+    		//there are existing rounds but all are "not started", it means we need to create teams
     		case 2:	$this->set('roundStatus', $rs['text']);
     				$this->Session->write('nextStep','Entry List');
-    				$this->set('formStatus', 'Please write an invitation code in the field below.');
+    				$this->set('formStatus', 'Please write an invitation code in the field below. The audience will need to enter this code to login.');
     				$this->Session->write('currentRound',1);
     			break;
     			
-    		//there are existing rounds and some of them are "terminated"
+    		//there are existing rounds and some of them are "terminated", it means teams are already created,
+    		//we now need to register every users of the audience.
     		case 3: $this->set('roundStatus', $rs['text']);
     				$this->Session->write('nextStep','Audience');
     				$this->Session->write('currentRound',$rs['currentRound']);
+    				$this->set('formStatus', 'Please write an invitation code in the field below. The audience will need to enter this code to login.');
     	}
     	
     }
@@ -261,7 +264,21 @@ class AdminsController extends AppController
     {
     	$this->set('numberOfTeams',$this->Session->read('numberOfTeams'));
     	
-    	$this->set('teamList',$this->Team->find('all'));
+    	$teamList = $this->Team->find('all');
+    	
+    	$this->set('teamList',$teamList);
+    	
+    	//If the admin clicks on the "save" button, we register the results of the audition 
+    	if(isset($this->request->data['AudienceForm']))
+    	{
+    		var_dump($this->request->data['AudienceForm']);
+    		$this->Team->checkIfNowOutOfGame(data['AudienceForm']);
+    		$this->Round->enableElection($this->Session->read('currentRound'));
+    		
+    		$this->Session->write('currentStep','Election');
+    		 
+    		$this->redirect('mainView');
+    	}
     	
     	
     

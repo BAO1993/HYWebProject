@@ -150,17 +150,17 @@ elseif($currentStep == 'Audition')
 	{?>
 		<div class="team_input">
 		
-			<p>Team Name: <?= $teamList[$i]['name'] ?></p>
-			<p>Subject: <?= $teamList[$i]['subject'] ?></p>
+			<p>Team Name: <?= $teamList[$i]['Team']['name'] ?></p>
+			<p>Subject: <?= $teamList[$i]['Team']['subject'] ?></p>
 			
 			<?php
 			
-			echo $this->Form->input('radio'.strval($i), array(
-    												'before' => '--avant--',
-    												'after' => '--après--',
-    												'between' => '--entre---',
-    												'separator' => '--séparateur--',
-    												'options' => array('Pass', 'Fail')));
+			echo $this->Form->input('radio'.strval($i), array(	'label' => false,
+																'legend' => false,
+																'type' => 'radio',
+																'value' => 0,
+    															'options' => array('Pass', 'Fail')));
+
 			?>
 		</div>
 		
@@ -171,14 +171,37 @@ elseif($currentStep == 'Audition')
 }
 
 
+//////////////////////////////////////////	Election	/////////////////////////////////////////////
+
+elseif($currentStep == 'Audition')
+{
+	//echo $this->Form->create('AudienceForm');
+
+	for($i = 0; $i < $numberOfTeams; $i++)
+	{?>
+		<div class="team_input">
+		
+			<p>Team Name: <?= $teamList[$i]['Team']['name'] ?></p>
+			<p>Subject: <?= $teamList[$i]['Team']['subject'] ?></p>
+			<p>Pize: <?= $teamList[$i]['Team']['prize'] ?></p>
+			
+			<?php
+			
+			
+
+			?>
+		</div>
+		
+			<?php
+	}
+	//echo $this->Form->end('Save');
+
+}
 
 
 
 
-
-
-
-
+//////////////////////////////////////////	  View	   /////////////////////////////////////////////
 
 
 
