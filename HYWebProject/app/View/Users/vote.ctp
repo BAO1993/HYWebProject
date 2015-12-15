@@ -8,7 +8,7 @@
 </div>
  
  
- <div id="content">
+ <div class="list">
     
     <h2><span class="label label-default">Vote</span></h2>
 <?php
@@ -31,6 +31,9 @@ $attributes = array('legend' => false,'default'=>'1');
 <?php echo $this->Form->create('Team');?>
 <div id="vote"><?php echo $this->Form->radio('id', $options, $attributes); ?></div>
 <div id="vote"><?php echo $this->Form->input('prize'); ?></div>
+<?php if (isset($message)){ ?>
+<p class="warning"><?php echo $message; ?></p>
+<?php } ?>
 <?php echo $this->Form->end("submit"); ?>
 
 
@@ -41,14 +44,8 @@ echo "The vote is not started yet! Please try later.";
 }
 
 ?>
+
+
+
+
 </div>
-
-<?php
-if (isset($message)){
-    echo $message;
-}
-if (isset($res)){
-   var_dump($res);
-}
-
-?>

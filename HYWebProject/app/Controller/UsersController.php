@@ -13,7 +13,7 @@ class UsersController extends AppController
 
 	public function user_login(){
 		
-	/*	$mobile = FALSE;
+		$mobile = FALSE;
 		$user_agent = array('iPhone', 'Android', 'iPod', 'iPad');
 		
 		foreach ($user_agent as $usr)
@@ -23,22 +23,22 @@ class UsersController extends AppController
 				$mobile = TRUE;
 				break;
 			}
-		}*/
+		}
 		
 		//à enlever
 		//$mobile = FALSE;
 	//	$mobile=true;
 		
-//		if($mobile)
-//		{
-//		$this->Session->write('Access',"true");
-	//	error_log("function user_login: not denied");
+		if($mobile)
+		{
+		$this->Session->write('Access',"true");
+		error_log("function user_login: not denied");
 		
 			if( isset($this->request->data['Login'])){
 			
-				if(($this->User->checkVote($this->request->data['Login']['department'],$this->request->data['Login']['name'])) == true)
+				if(($this->User->checkLogin($this->request->data['Login']['department'],$this->request->data['Login']['name'])) == true)
 				{
-					if(($this->User->checkLogin($this->request->data['Login']['department'],$this->request->data['Login']['name'])) == true)
+					if(($this->User->checkVote($this->request->data['Login']['department'],$this->request->data['Login']['name'])) == true)
 					{
 						$datas = $this->User->find('first', array('conditions' => array('name' => $this->request->data['Login']['name'])));
 						$this->Session->write('Info',$datas['User']['id']);
@@ -46,22 +46,22 @@ class UsersController extends AppController
 					}
 					else
 					{
-						$this->set('message', "Incorrect information, please try again");
+						$this->set('message', "You have already voted!");
 					}
 				}
 				else{
-					$this->set('message', "You have already voted!");
+					$this->set('message', "Incorrect information!");
 				}
 	
 			}
 		
-	/*	}
+		}
 		else
 		{
 			$this->Session->write('Access',"false");
 			error_log("function user_login:denied");
 			$this->redirect('access_denied');
-		}*/
+		}
 		
 		
 	}
@@ -82,7 +82,7 @@ class UsersController extends AppController
 			}
 			else
 			{
-				$this->set('message', "Wrong code, please try again");
+				$this->set('message', "Wrong code!");
 			}
 		
 		}
@@ -119,25 +119,27 @@ class UsersController extends AppController
 
 		if(isset($this->request->data['Team'])){
 			
-			$round=$this->Round->find('first', array('conditions' => array( 'status' => "in_progress")));
-			$team_id= $this->request->data['Team']['id'];
-			$round_id= $round["Round"]["id"];
-			$team_result=$this->Round->query("SELECT * FROM team_results where id_round=$round_id and id_team=$team_id;");
-			$result=$this->Result->findById($team_result[0]["team_results"]["id_result"]);
-			$prize=$result['Result']['prize']+$this->request->data['Team']['prize'];
-			$data = array('id' => $team_result[0]["team_results"]["id_result"], 'prize' => $prize);
-			$this->Result->save($data);
-			
-			$user_id=$this->Session->read('Connected');
-			$us = array('id' => $user_id, 'voted' => '1');
-			
-			//$this->User->read(null,$user_id);
-			//$this->set('voted', '1');
-			$this->User->save($us);
-			
-			$this->Session->write('Voted',"true");
-			$this->redirect('vote_confirm'); 
-		//	$this->set('res',$round);
+			if(preg_match("/^\d+$/", $this->request->data['Team']['prize'])==true)
+			{
+				$round=$this->Round->find('first', array('conditions' => array( 'status' => "in_progress")));
+				$team_id= $this->request->data['Team']['id'];
+				$round_id= $round["Round"]["id"];
+				$team_result=$this->Round->query("SELECT * FROM team_results where id_round=$round_id and id_team=$team_id;");
+				$result=$this->Result->findById($team_result[0]["team_results"]["id_result"]);
+				$prize=$result['Result']['prize']+$this->request->data['Team']['prize'];
+				$data = array('id' => $team_result[0]["team_results"]["id_result"], 'prize' => $prize);
+				$this->Result->save($data);
+				
+				$user_id=$this->Session->read('Connected');
+				$us = array('id' => $user_id, 'voted' => '1');
+				$this->User->save($us);
+				
+				$this->Session->write('Voted',"true");
+				$this->redirect('vote_confirm'); 
+			}
+			else{
+				$this->set("message","Prize is not fill or it's not a digit!");
+			}
 			
 			}
 		  }
@@ -166,7 +168,7 @@ class UsersController extends AppController
 		$id_connec = $this->Session->read('Connected');
 		$id_info = $this->Session->read('Info');
 		$vote = $this->Session->read('Voted');
-/*		$access=$this->Session->read('Access');
+		$access=$this->Session->read('Access');
 		error_log("beforefilter:".$access);
 
 		if($access == "false" && $this->request->params['action'] != 'access_denied')
@@ -186,10 +188,10 @@ class UsersController extends AppController
 			{
 				//error_log("beforeFilter:".$id_connec);
 				$this->redirect(array('controller' => 'Users', 'action' => 'invitation'));
-			}*/
+			}
 		
 		
-		if($id_info == NULL && $this->request->params['action'] != 'user_login')
+	/*	if($id_info == NULL && $this->request->params['action'] != 'user_login')
 		{
 			$this->redirect(array('controller' => 'Users', 'action' => 'user_login'));
 		}
@@ -200,7 +202,7 @@ class UsersController extends AppController
 			$this->redirect(array('controller' => 'Users', 'action' => 'invitation'));
 		}
 		
-		
+		*/
 
 	}
 	

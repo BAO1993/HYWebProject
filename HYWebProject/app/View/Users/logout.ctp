@@ -7,6 +7,8 @@
 	<img src="/HYWebProject/HYWebProject/app/webroot/img/audition.png" alt="sid_logo" />
 </div>
 
+<div class="list">
 <?php 
 echo 'Deconnection successful !';
 ?>
+</div>

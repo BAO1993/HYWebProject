@@ -11,16 +11,12 @@
 
 
 <?php echo $this->Form->create('Login');?>
+<?php if (isset($message)){ ?>
+<p class="warning"><?php echo $message; ?></p>
+<?php }?>
 <p><?php echo $this->Form->input('department');?></p>
 <p><?php echo $this->Form->input('name');?></p>
 <?php echo $this->Form->end('Connexion');?>
 
 
 
-
-<?php
-if (isset($message)){
-    echo $message;
-}
-
-?>
