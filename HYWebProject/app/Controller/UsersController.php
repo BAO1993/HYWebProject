@@ -71,7 +71,7 @@ class UsersController extends AppController
 		if( isset($this->request->data['Code'])){
 			$user_id = $this->Session->read('Info');
 			$user=$this->User->find('first', array('conditions' => array('id' => $user_id)));
-		    $this->set("info",$this->User->checkCode($user['User']['dept'],$user['User']['name'],$this->request->data['Code']['invitation_code']));
+		  //  $this->set("info",$this->User->checkCode($user['User']['dept'],$user['User']['name'],$this->request->data['Code']['invitation_code']));
 		    
 			if($this->User->checkCode($user['User']['dept'],$user['User']['name'],$this->request->data['Code']['invitation_code']) == 1)
 			{
@@ -110,40 +110,46 @@ class UsersController extends AppController
 		else{
 		
 		$round=$this->Round->find('first', array('conditions' => array( 'status' => "in_progress")));
+		$presence=$this->User->checkPresence($this->Session->read('Connected'));
 		if($round)
 		{
-		
-		$datas=$this->Team->find("all",array('conditions' => array( 'out_game' => "0"))); 
-		$this->set("teams",$datas);
-		
-
-		if(isset($this->request->data['Team'])){
-			
-			if(preg_match("/^\d+$/", $this->request->data['Team']['prize'])==true)
+			if($presence==true)
 			{
-				$round=$this->Round->find('first', array('conditions' => array( 'status' => "in_progress")));
-				$team_id= $this->request->data['Team']['id'];
-				$round_id= $round["Round"]["id"];
-				$team_result=$this->Round->query("SELECT * FROM team_results where id_round=$round_id and id_team=$team_id;");
-				$result=$this->Result->findById($team_result[0]["team_results"]["id_result"]);
-				$prize=$result['Result']['prize']+$this->request->data['Team']['prize'];
-				$data = array('id' => $team_result[0]["team_results"]["id_result"], 'prize' => $prize);
-				$this->Result->save($data);
+		
+				$datas=$this->Team->find("all",array('conditions' => array( 'out_game' => "0"))); 
+				$this->set("teams",$datas);
 				
-				$user_id=$this->Session->read('Connected');
-				$us = array('id' => $user_id, 'voted' => '1');
-				$this->User->save($us);
-				
-				$this->Session->write('Voted',"true");
-				$this->redirect('vote_confirm'); 
-			}
-			else{
-				$this->set("message","Prize is not fill or it's not a digit!");
-			}
-			
-			}
+
+				if(isset($this->request->data['Team'])){
+					
+						if(preg_match("/^\d+$/", $this->request->data['Team']['prize'])==true)
+						{
+							$round=$this->Round->find('first', array('conditions' => array( 'status' => "in_progress")));
+							$team_id= $this->request->data['Team']['id'];
+							$round_id= $round["Round"]["id"];
+							$team_result=$this->Round->query("SELECT * FROM team_results where id_round=$round_id and id_team=$team_id;");
+							$result=$this->Result->findById($team_result[0]["team_results"]["id_result"]);
+							$prize=$result['Result']['prize']+$this->request->data['Team']['prize'];
+							$data = array('id' => $team_result[0]["team_results"]["id_result"], 'prize' => $prize);
+							$this->Result->save($data);
+							
+							$user_id=$this->Session->read('Connected');
+							$us = array('id' => $user_id, 'voted' => '1');
+							$this->User->save($us);
+							
+							$this->Session->write('Voted',"true");
+							$this->redirect('vote_confirm'); 
+						}
+						else{
+							$this->set("message","Prize is not fill or it's not a digit!");
+						}
+						
+				}
+			 }
+			 
+		  
 		  }
-		}
+	   }
 	}
 	
 	public function vote_confirm(){
