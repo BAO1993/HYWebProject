@@ -124,7 +124,7 @@ class UsersController extends AppController
 					
 						if(preg_match("/^\d+$/", $this->request->data['Team']['prize'])==true)
 						{
-							$round=$this->Round->find('first', array('conditions' => array( 'status' => "in_progress")));
+							$round=$this->Round->find('first', array('conditions' => array( 'status' => "in progress")));
 							$team_id= $this->request->data['Team']['id'];
 							$round_id= $round["Round"]["id"];
 							$team_result=$this->Round->query("SELECT * FROM team_results where id_round=$round_id and id_team=$team_id;");
