@@ -127,7 +127,7 @@
 	
 	#SetupFormMainViewForm
 	{
-		width:370px;
+		width:500px;
 		margin-top:30px;
 		margin-left:100px;
 		font-size:15px;
@@ -461,38 +461,40 @@
 		continue to form View
 	*/
 	
-	#formView{
+	#result_page{
 		width:1200px;
-		margin-top:30px;
-		margin-left:100px;
+		margin-top:20px;
+		margin-left:20px;
+		margin-bottom:10px;
+		padding:10px;
 		font-size:15px;
 		font-family:Black,"Verdana",sans-serif;
+		border:5px solid purple;
+		border-radius:10px;
 		overflow:auto;
 	}
 	
-	#formView input[type="text"]:first-child{
-		margin-right:30px;
-	}
-	
-	#formView input[type="text"]:nth-child(2){
+	#result_page .team_election{
 		width:300px;
+		margin-bottom:5px;
 		margin-right:20px;
+		padding:5px;
+		color:purple;
+		overflow:auto;
+		border:2px solid black;
+		border-radius:10px;
+		float:left;
 	}
 	
-	#formView input[type="text"]:nth-child(3){
-		width:80px;
-		margin-right:20px;
+	#result_page div p{
+		margin-right:10px;
+		padding:2px;
+	
 	}
 	
-	#formView p input[type="submit"]:nth-child(1){
-		width:75px;
+	.view_button{
+		margin-left:30px;
 	}
-	
-	#formView #saveBtn{
-		float:right;
-		margin-right:392px;
-	}
-	
 	
 	
 	
