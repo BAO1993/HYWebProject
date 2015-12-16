@@ -13,7 +13,7 @@
     <h2><span class="label label-default">Vote</span></h2>
 <?php
 
-if($teams)
+if(isset($teams))
 { ?>
 
 
