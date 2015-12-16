@@ -19,4 +19,6 @@
 <?php echo $this->Form->end('Connexion');?>
 
 
-
+<?php if (isset($mes)){ ?>
+<p class="warning"><?php echo $mes; ?></p>
+<?php }?>

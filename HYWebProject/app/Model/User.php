@@ -52,7 +52,7 @@ class User extends AppModel
     {
     	$results = $this->findById($id);
     	 
-    	if($results["User"]["confirm"]=="1")
+    	if($results['User']['confirm']=="1")
     	{
     	return true;
     	}

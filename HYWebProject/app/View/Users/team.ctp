@@ -13,7 +13,7 @@
     
 <?php
 
-if($isset($teams))
+if($teams)
 { ?>
 <ul>
 <?php for($i=0;$i<count($teams);$i++) { //var_dump($value); ?>

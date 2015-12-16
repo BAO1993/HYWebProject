@@ -32,7 +32,7 @@ class UsersController extends AppController
 		if($mobile)
 		{
 		$this->Session->write('Access',"true");
-		error_log("function user_login: not denied");
+	//	error_log("function user_login: not denied");
 		
 			if( isset($this->request->data['Login'])){
 			
@@ -108,8 +108,8 @@ class UsersController extends AppController
 			$this->redirect('vote_confirm');
 		}
 		else{
-		
-		$round=$this->Round->find('first', array('conditions' => array( 'status' => "in_progress")));
+			
+		$round=$this->Round->find('first', array('conditions' => array( 'status' => "in progress")));
 		$presence=$this->User->checkPresence($this->Session->read('Connected'));
 		if($round)
 		{
@@ -126,7 +126,7 @@ class UsersController extends AppController
 						{
 							$round=$this->Round->find('first', array('conditions' => array( 'status' => "in progress")));
 							$team_id= $this->request->data['Team']['id'];
-							$round_id= $round["Round"]["id"];
+							$round_id= $round['Round']['id'];
 							$team_result=$this->Round->query("SELECT * FROM team_results where id_round=$round_id and id_team=$team_id;");
 							$result=$this->Result->findById($team_result[0]["team_results"]["id_result"]);
 							$prize=$result['Result']['prize']+$this->request->data['Team']['prize'];
@@ -145,9 +145,15 @@ class UsersController extends AppController
 						}
 						
 				}
+		 }
+			 else{
+			 	$this->set("mes","presence problem");
 			 }
 			 
 		  
+		  }
+		  else{
+		  	$this->set("mes","round problem");
 		  }
 	   }
 	}
@@ -194,7 +200,7 @@ class UsersController extends AppController
 			{
 				//error_log("beforeFilter:".$id_connec);
 				$this->redirect(array('controller' => 'Users', 'action' => 'invitation'));
-			}
+			} 
 		
 		
 	/*	if($id_info == NULL && $this->request->params['action'] != 'user_login')
