@@ -18,8 +18,8 @@ class AdminsController extends AppController
 			$login = $this->request->data['AdminLoginForm']['id'];
 			$pw = $this->request->data['AdminLoginForm']['password'];
 			
-			//TO DO: find a way to get the ip of the admin "166.104.XXX.XXX"
-			$ip = "42.42.42.42";
+			//We get the address of the user
+			$ip = $_SERVER['REMOTE_ADDR'];
 			
 			//We check if the login and the password matches with a row of the database
             if($this->Admin->checkLoginInfo($login, $pw, $ip))

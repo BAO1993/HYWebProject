@@ -53,7 +53,7 @@ ALTER TABLE team_results ADD CONSTRAINT fk_team FOREIGN KEY (id_team) REFERENCES
 
 INSERT INTO admins (ip, login,password)
  VALUES
- ('42.42.42.42', 'bob','92cfceb39d57d914ed8b14d0e37643de0797ae56');
+ ('127.0.0.1', 'bob','92cfceb39d57d914ed8b14d0e37643de0797ae56');
 
 /*INSERT INTO users (name, dept, inv_code)
  VALUES
