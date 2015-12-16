@@ -18,9 +18,14 @@
             </div>
 			
 			 <div id="home">
-			 	<a href="Adminlogin.html">
-			 		<img src="/HYWebProject/HYWebProject/app/webroot/img/home2.png" alt="Sid logo" />
-			 	</a>
+			 	<!--<a href="Adminlogin.html"> -->
+			 	
+			<?php echo $this->html->image('C:\MAMP\htdocs\HYWebProject\HYWebProject\app\webroot\img\home2.png', 
+									array('alt' => 'Sid logo', 'url' => array(	'controller'=>'Admins',
+																				'action'=>'adminLogin')));
+    		?>
+			 		<!-- <img src="/HYWebProject/HYWebProject/app/webroot/img/home2.png" alt="Sid logo" />
+			 	</a> -->
     		</div>
     </header>
 
@@ -57,18 +62,6 @@ echo $this->Form->input('round', array('options' => array(	'1'=>'Qualifying Roun
 															'10'=>'Qualifying Round #10',
 															'11'=>'Qualifying Round #11',
 															'12'=>'Final round #12')));
-
-/*echo $this->Form->input('round Number', array('options' => array(	'1'=>'1',
-																		'2'=>'2',
-																		'3'=>'3',
-																		'4'=>'4',
-																		'5'=>'5',
-																		'6'=>'6',
-																		'7'=>'7',
-																		'8'=>'8',
-																		'9'=>'9',
-																		'10'=>'10',
-																		'11'=>'11')));*/
 	
 
 

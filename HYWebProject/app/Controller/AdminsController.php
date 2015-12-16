@@ -30,6 +30,8 @@ class AdminsController extends AppController
                 
                 //We write the login of the admin into a session variable named "Connected"
                 //By doing that, the server can remember the admin is connected.
+
+                $this->Session->destroy();///////////////////////////////////////////////////////////////Check if it work or not, to avoid infinite loop
                 $this->Session->write('connectedAdmin',$login);
                 
                 $this->Session->write('currentStep','Setup');
@@ -59,9 +61,9 @@ class AdminsController extends AppController
     	for($i=1;$i<=6;$i++)
     	{
     		$hl[strval($i)] = '';
-			
     	}
 		$this->set('hl',$hl);
+		
     	switch($this->Session->read('currentStep'))
     	{
     		case 'Setup':	$this->setup();
