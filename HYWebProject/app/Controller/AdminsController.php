@@ -268,9 +268,9 @@ class AdminsController extends AppController
     	$this->set('teamList',$teamList);
     	
     	//If the admin clicks on the "save" button, we register the results of the audition 
-    	if(isset($this->request->data['AudienceForm']))
+    	if(isset($this->request->data['AuditionForm']))
     	{
-    		$this->Team->checkIfNowOutOfGame(data['AudienceForm']);
+    		$this->Team->checkIfNowOutOfGame(data['AuditionForm']);
     		$this->Round->enableElection($this->Session->read('currentRound'));
     		
     		$this->Session->write('currentStep','Election');

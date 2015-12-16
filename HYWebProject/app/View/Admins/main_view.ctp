@@ -135,7 +135,7 @@ elseif($currentStep == 'Audience')
 
 elseif($currentStep == 'Audition')
 {
-	echo $this->Form->create('AudienceForm');
+	echo $this->Form->create('AuditionForm');
 
 	for($i = 0; $i < $numberOfTeams; $i++)
 	{?>
