@@ -127,6 +127,7 @@ class AdminsController extends AppController
     		//if there are no existing rounds
     		case 0: $this->set('roundStatus', $rs['text']);
     				$this->set('formStatus', 'Please write an invitation code for round #1 in the field below.');
+    				$this->Session->write('nextStep','Entry List');
     				$this->Session->write('currentRound',1);
     			break;
     		
@@ -270,7 +271,7 @@ class AdminsController extends AppController
     	//If the admin clicks on the "save" button, we register the results of the audition 
     	if(isset($this->request->data['AuditionForm']))
     	{
-    		$this->Team->checkIfNowOutOfGame(data['AuditionForm']);
+    		$this->Team->checkIfNowOutOfGame($this->request->data['AuditionForm']);
     		$this->Round->enableElection($this->Session->read('currentRound'));
     		
     		$this->Session->write('currentStep','Election');
