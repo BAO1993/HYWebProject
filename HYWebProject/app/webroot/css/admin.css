@@ -5,6 +5,11 @@
 	html{
 		background-image:url("../img/background1.jpg");
 	}
+	
+	body{
+		font-family:Black,"Verdana",sans-serif;
+		font-size:14px;
+	}
 
 	#logo img{
 		width:500px;
@@ -25,6 +30,7 @@
 	
 	form#AdminLoginFormAdminLoginForm{
 		width:300px;
+		font-size:16px;
 		font-family:Brown,"Verdana",sans-serif;
 		color:purple;
 		margin-left:auto;
@@ -35,14 +41,19 @@
 	form#AdminLoginFormAdminLoginForm div:not(.submit){
 		font-weight:bold;
 		text-align:left;
+		margin-bottom:20px;
 	}
 	
 	#AdminLoginFormId{
 		float:right;
+		height:20px;
+		margin-top:-4px;
 	}
 	
 	#AdminLoginFormPassword{
 		float:right;
+		height:20px;
+		margin-top:-4px;
 	}
 	
 	.submit input[type="submit"]
@@ -66,15 +77,11 @@
 		font-family:Brown,"Verdana",sans-serif;
 	}
 
-	#headerwrap div{
+	#headerwrap div:not(#welcome):not(#logout):not(#home){
 		float:left;
 		margin-top:12px;
+		margin-left:15px;
 		margin-bottom:12px;
-		margin-right:25px;
-		padding-top:10px;
-		padding-bottom:10px;
-		padding-right:10px;
-		padding-left:10px;
 		font-size:15px;
 	}
 	
@@ -85,15 +92,16 @@
 	
 	#Highlight{
 		color:black;
-		background-color:purple;
+		background-color:#910091;
 		font-weight:bold;
+		border:4px solid none;
+		border-radius:5px;
 	}
 	
 	#home img{
 		padding-top:3px;
 		padding-bottom:3px;
 		width:50px;
-		float:right;
 		margin-right:50px;
 	}
 	
@@ -104,12 +112,16 @@
 	#welcome{
 		color:#ff0080;
 		float:right;
-		margin-left:150px;
+		margin-left:120px;
 	}
 	
 	#welcome:hover{
 		cursor:pointer;
 		color:purple;
+	}
+	
+	#logout{
+		float:right;
 	}
 	
 	#logout a{
@@ -118,6 +130,11 @@
 	
 	#logout a:hover{
 		cursor:pointer;
+	}
+	
+	#home{
+		float:right;
+		margin-top:3px;
 	}
 	
 	#content{
@@ -131,11 +148,10 @@
 		margin-top:30px;
 		margin-left:100px;
 		font-size:15px;
-		font-family:Black,"Verdana",sans-serif;
 		padding-left:20px;
 		padding-top:5px;
 		padding-bottom:20px;
-		border:5px solid purple;
+		border:5px ridge purple;
 		border-radius:10px;
 	}
 	
@@ -171,8 +187,9 @@
 	}
 	
 	#form_status{
-		color:maroon;
+		color:#ff8000;
 		margin-left:100px;
+		font-size:12px;
 		
 	}
 	
@@ -216,7 +233,7 @@
 		padding-left:15px;
 		width:600px;
 		margin-left:40px;
-		border:5px solid purple;
+		border:5px groove purple;
 		border-radius:10px;
 	}
 	
@@ -263,7 +280,7 @@
 	}
 	
 	#AudienceNumberFormMainViewForm .submit input[type="submit"]{
-		margin:0;
+		margin:0px;
 		height:21px;
 	}
 	
@@ -298,6 +315,9 @@
 		margin-top:10px;
 	}
 	
+	#AudienceFormMainViewForm .submit input[type="submit"]{
+		margin:0;
+	}
 	
 	
 	/*
@@ -329,13 +349,13 @@
 	}
 	
 	#AuditionFormMainViewForm div p:nth-child(2){
-		border:2px solid gray;
+		border:2px outset gray;
 		border-radius:5px;
 		width:250px;
 	}
 	
 	#AuditionFormMainViewForm div p:nth-child(4){
-		border:2px solid gray;
+		border:2px outset gray;
 		border-radius:5px;
 		width:250px;
 	}
@@ -415,13 +435,13 @@
 	}
 	
 	#ElectionFormMainViewForm div p:nth-child(3){
-		border:2px solid gray;
+		border:2px outset gray;
 		border-radius:5px;
 		width:250px;
 	}
 	
 	#ElectionFormMainViewForm div p:nth-child(5){
-		border:2px solid gray;
+		border:2px outset gray;
 		border-radius:5px;
 		width:250px;
 	}
