@@ -79,8 +79,8 @@
 	}
 	
 	#headerwrap div:not(#welcome):not(#logout):hover{
-	color:#000000;
-	cursor:pointer;
+		color:#000000;
+		cursor:default;
 	}
 	
 	#Highlight{
@@ -282,6 +282,7 @@
 		padding-left:15px;
 		width:800px;
 		margin-left:40px;
+		font-family:Black,"Verdana",sans-serif;
 		border:5px solid purple;
 		border-radius:10px;
 	}
