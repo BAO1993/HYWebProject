@@ -1,5 +1,5 @@
 <?php echo $this->Html->css('admin'); ?>
-
+<link href="/HYWebProject/HYWebProject/app/webroot/img/audition.png" type="img/png" rel="shortcut icon">
 <header>
             <div id="headerwrap">
                 <div <?= $hl['1'] ?>>1. Setup</div>
