@@ -5,7 +5,7 @@
                 <div <?= $hl['3'] ?>>3. Audience</div>
                 <div <?= $hl['4'] ?>>4. Audition</div>
                 <div <?= $hl['5'] ?>>5. Election</div>
-                <div <?= $hl['6'] ?>>6. View</div>
+                <div <?= $hl['6'] ?>>6. Result</div>
 				
 				<div id="welcome">
 						Welcome, <?= $adminLogin ?>
@@ -48,7 +48,7 @@ if($currentStep == 'Setup')
 	
 <?php
 
-echo $this->Form->input('round', array('options' => array(	'1'=>'Qualifying Round #1',
+/*echo $this->Form->input('round', array('options' => array(	'1'=>'Qualifying Round #1',
 															'2'=>'Qualifying Round #2',
 															'3'=>'Qualifying Round #3',
 															'4'=>'Qualifying Round #4',
@@ -59,7 +59,7 @@ echo $this->Form->input('round', array('options' => array(	'1'=>'Qualifying Roun
 															'9'=>'Qualifying Round #9',
 															'10'=>'Qualifying Round #10',
 															'11'=>'Qualifying Round #11',
-															'12'=>'Final round #12')));
+															'12'=>'Final round #12')));*/
 	
 
 
@@ -187,6 +187,13 @@ elseif($currentStep == 'Election')
 			<p>Subject: <em><?= $teamList[$i]['subject'] ?></em></p>
 			<p>Prize: <em><?= $teamList[$i]['prize'] ?></em></p>
 			
+			<?php
+			if(!$isFinal)
+			{
+				echo $this->Form->checkbox($teamList[$i]['name']);
+				echo $this->Form->label('Send to final round ?');
+			}
+			?>
 			
 		</div>
 		
@@ -199,10 +206,42 @@ elseif($currentStep == 'Election')
 
 
 
-//////////////////////////////////////////	  View	   /////////////////////////////////////////////
+//////////////////////////////////////////	  Result	   /////////////////////////////////////////////
 
 
+elseif($currentStep == 'Result')
+{
 
+	for($i = 0; $i < count($teamList); $i++)
+	{?>
+		<div class="team_election">
+		
+		<?php 
+		switch($teamList[$i]['status'])
+		{
+			case 'Passed': $id_status = 'id="passed"';break;
+			case 'Failed': $id_status = 'id="failed"';break;
+			case 'Final': $id_status = 'id="final"';break;
+		}
+		
+		?>
+		
+			<p class="team_status" <?= $id_status ?>><?= $teamList[$i]['status'] ?></p>
+			<p>Team Name: <em><?= $teamList[$i]['name'] ?></em></p>
+			<p>Subject: <em><?= $teamList[$i]['subject'] ?></em></p>
+			<p>Prize: <em><?= $teamList[$i]['prize'] ?></em></p>
+			
+			
+			
+		</div>
+		
+			<?php
+	}
+	echo $this->Html->link(	'Log out',
+							array('controller' => 'Admins','action' => 'adminLogin'),
+							array('class' => 'view_button'));
+
+}
 
 ?>
 

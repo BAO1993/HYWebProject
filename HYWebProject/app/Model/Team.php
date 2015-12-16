@@ -76,7 +76,8 @@ class Team extends AppModel
 					$status = 'Passed';
 				}
 				
-				array_push($list,array(	'name' 		=> $tl[$i]['Team']['name'],
+				array_push($list,array(	'id'		=> $tl[$i]['Team']['id'],
+										'name' 		=> $tl[$i]['Team']['name'],
 										'subject' 	=> $tl[$i]['Team']['subject'],
 										'prize' 	=> $prize,
 										'status' 	=> $status));
@@ -92,6 +93,22 @@ class Team extends AppModel
 		
 	}
 	
-	
+	public function sendToFinal($teamList,$form)
+	{
+		for($i = 0; $i < count($teamList); $i++)
+		{
+			if(isset($form[$teamList[$i]['name']]))
+			{
+				if($form[$teamList[$i]['name']] == '1')
+				{
+					$this->read(null, $teamList[$i]['id']);
+					$this->set('in_final', true);
+					$this->save();
+					$this->clear();
+				}
+			}
+		}
+		
+	}
 	
 }

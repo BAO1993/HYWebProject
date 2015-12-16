@@ -90,7 +90,7 @@ class AdminsController extends AppController
 				    		$this->set('hl',$hl);
     			break;
     			
-    		case 'View':$this->finalResults();
+    		case 'Result':$this->result();
 			    		$hl['6'] = 'id="Highlight"';
 			    		$this->set('hl',$hl);
     			break;
@@ -263,10 +263,8 @@ class AdminsController extends AppController
     
     private function audition()
     {
-    	$this->set('numberOfTeams',$this->Session->read('numberOfTeams'));
-    	
     	$teamList = $this->Team->find('all');
-    	
+    	$this->set('numberOfTeams',count($teamList));
     	$this->set('teamList',$teamList);
     	
     	//If the admin clicks on the "save" button, we register the results of the audition 
@@ -289,26 +287,29 @@ class AdminsController extends AppController
     	$teamList = $this->Team->getTeamAndPrize();
     	
     	$this->set('teamList',$teamList);
+    	$this->set('isFinal',$this->Round->isCurrentRoundFinal($this->Session->read('currentRound')));
     	
     	
-    	
-    	
-    	//If the admin clicks on the "save" button, we close the round.
+    	//If the admin clicks on the "save" button, 
+    	//we close the round and we send to final round teams which have their box checked.
     	if(isset($this->request->data['ElectionForm']))
     	{
-    		
     		$this->Round->closeThisRound($this->Session->read('currentRound'));
     	
-    		$this->Session->write('currentStep','Election');
+    		$this->Team->sendToFinal($teamList, $this->request->data['ElectionForm']);
+    		
+    		$this->Session->write('currentStep','View');
     		 
     		$this->redirect('mainView');
     	}
     
     }
     
-    private function finalResults()
+    private function result()
     {
-    
+    	$teamList = $this->Team->getTeamAndPrize();
+    	 
+    	$this->set('teamList',$teamList);
     }
 	
 	

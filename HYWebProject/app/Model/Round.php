@@ -95,7 +95,12 @@ class Round extends AppModel
 		$this->clear();
 	}
 	
-	
+	public function isCurrentRoundFinal($currentRound)
+	{
+		$tmp = $this->find('first',array('conditions' => array('id' => $currentRound),'fields' => array('is_final')));
+		
+		return $tmp['Round']['is_final'];
+	}
 	
 	
 	
