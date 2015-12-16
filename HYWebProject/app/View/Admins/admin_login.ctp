@@ -28,24 +28,3 @@ if (isset($status))
 
 <?php echo $this->Form->end('Submit');?>
 
-
-
-<!-- 
-This code is almost the same than the following but here it is better to use CakePHP
-functions.
--->
-
-
-<!-- 
-<form action="myController.php" method="post" id="form">
-
-	<p>
-	ID:<input type="text" name="id"/>
-	</p>
-	<p>
-	Password:<input type="text" name="password"/>
-	</p>
-	
-	<input type="submit" name="login" value="Login"/>
-</form>
--->
