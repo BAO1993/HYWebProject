@@ -223,8 +223,9 @@ elseif($currentStep == 'Election')
 
 
 elseif($currentStep == 'Result')
-{
-
+{?>
+	<div id="result_page">
+<?php
 	for($i = 0; $i < count($teamList); $i++)
 	{?>
 		<div class="team_election">
@@ -249,7 +250,9 @@ elseif($currentStep == 'Result')
 		</div>
 		
 			<?php
-	}
+	}?>
+	</div>
+<?php
 	echo $this->Html->link(	'Log out',
 							array('controller' => 'Admins','action' => 'adminLogin'),
 							array('class' => 'view_button'));
