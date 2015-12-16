@@ -12,20 +12,18 @@
 				</div>
 				<div id="logout">
 					<a href="Adminlogin.html">
-							Log out
+					<?php
+					echo $this->Html->link('Log out',array('controller' => 'Admins','action' => 'adminLogin'));?>
+							
 					</a>
 				</div>
             </div>
 			
-			 <div id="home">
-			 	<!--<a href="Adminlogin.html"> -->
+			<div id="home">
 			 	
-			<?php echo $this->html->image('C:\MAMP\htdocs\HYWebProject\HYWebProject\app\webroot\img\home2.png', 
-									array('alt' => 'Sid logo', 'url' => array(	'controller'=>'Admins',
-																				'action'=>'adminLogin')));
-    		?>
-			 		<!-- <img src="/HYWebProject/HYWebProject/app/webroot/img/home2.png" alt="Sid logo" />
-			 	</a> -->
+			<?php echo $this->html->image('home2.png',array('alt' => 'Sid logo','url' => array(	'controller'=>'Admins',
+																								'action'=>'adminLogin')));?>
+    		
     		</div>
     </header>
 
@@ -170,10 +168,21 @@ elseif($currentStep == 'Election')
 {
 	echo $this->Form->create('ElectionForm');
 
-	for($i = 0; $i < $numberOfTeams; $i++)
+	for($i = 0; $i < count($teamList); $i++)
 	{?>
 		<div class="team_election">
 		
+		<?php 
+		switch($teamList[$i]['status'])
+		{
+			case 'Passed': $id_status = 'id="passed"';break;
+			case 'Failed': $id_status = 'id="failed"';break;
+			case 'Final': $id_status = 'id="final"';break;
+		}
+		
+		?>
+		
+			<p class="team_status" <?= $id_status ?>><?= $teamList[$i]['status'] ?></p>
 			<p>Team Name: <em><?= $teamList[$i]['name'] ?></em></p>
 			<p>Subject: <em><?= $teamList[$i]['subject'] ?></em></p>
 			<p>Prize: <em><?= $teamList[$i]['prize'] ?></em></p>

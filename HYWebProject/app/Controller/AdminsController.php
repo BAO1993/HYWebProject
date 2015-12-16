@@ -30,7 +30,7 @@ class AdminsController extends AppController
                 
                 //We write the login of the admin into a session variable named "Connected"
                 //By doing that, the server can remember the admin is connected.
-                $this->Session->destroy();///////////////////////////////////////////////////////////////Check if it work or not, to avoid infinite loop
+                $this->Session->destroy();
                 $this->Session->write('connectedAdmin',$login);
                 
                 $this->Session->write('currentStep','Setup');
@@ -133,7 +133,7 @@ class AdminsController extends AppController
     		//if there is a round in progress, it means that teams are already created and users already registered,
     		//we go to the Election step
     		case 1:	$this->set('roundStatus', $rs['text']);
-    				$this->Session->write('nextStep','Election');
+    				$this->Session->write('currentStep','Election');
     				$this->Session->write('currentRound',$rs['currentRound']);
     				$this->redirect('mainView');
     			break;
@@ -285,13 +285,11 @@ class AdminsController extends AppController
     }
     
     private function election()
-    {
-    	$this->set('numberOfTeams',$this->Session->read('numberOfTeams'));
-    	 
+    {    	 
     	$teamList = $this->Team->getTeamAndPrize();
     	
     	$this->set('teamList',$teamList);
-    	var_dump($teamList);
+    	
     	
     	
     	

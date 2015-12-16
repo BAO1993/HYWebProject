@@ -63,9 +63,23 @@ class Team extends AppModel
 					$prize = 0;
 				}
 				
-				array_push($list,array(	'name'=>$tl[$i]['Team']['name'],
-										'subject'=>$tl[$i]['Team']['subject'],
-										'prize'=>$prize));
+				if($tl[$i]['Team']['out_game'] == true)
+				{
+					$status = 'Failed';
+				}
+				elseif($tl[$i]['Team']['in_final'] == true)
+				{
+					$status = 'Final';
+				}
+				else 
+				{
+					$status = 'Passed';
+				}
+				
+				array_push($list,array(	'name' 		=> $tl[$i]['Team']['name'],
+										'subject' 	=> $tl[$i]['Team']['subject'],
+										'prize' 	=> $prize,
+										'status' 	=> $status));
 			
 			}
 			
