@@ -204,12 +204,9 @@
 		margin-right:10px;
 	}
 	
-	#NumberEntryFormMainViewForm .submit{
-		width:100px;
-	}
-	
 	#NumberEntryFormMainViewForm .submit input[type="submit"]{
 		margin:0;
+		height:21px;
 	}
 	
 	
@@ -229,19 +226,18 @@
 	
 	.team_input{
 		width:700px;
-		overflow:auto;
+		margin-bottom:10px;
 	}
 	
 	.team_input div{
 		float:left;
 		margin-right:30px;
-		margin-bottom:10px;
 	}
 	
-	#TeamsFormMainViewForm .submit{
-		margin-top:10px;
-	}
 	
+	#TeamsFormMainViewForm .submit input[type="submit"]{
+		margin:0;
+	}
 	
 	/*
 		continue to form Audience
@@ -253,7 +249,6 @@
 		padding:5px;
 		padding-left:15px;
 		margin-left:40px;
-		font-size:15px;
 		font-family:Black,"Verdana",sans-serif;
 	}
 	
@@ -267,12 +262,9 @@
 		margin-right:10px;
 	}
 	
-	#AudienceNumberFormMainViewForm .submit{
-		width:100px;
-	}
-	
 	#AudienceNumberFormMainViewForm .submit input[type="submit"]{
 		margin:0;
+		height:21px;
 	}
 	
 	
@@ -462,7 +454,7 @@
 	*/
 	
 	#result_page{
-		width:1000px;
+		width:1100px;
 		margin-top:20px;
 		margin-left:20px;
 		margin-bottom:30px;
@@ -477,6 +469,7 @@
 	#result_page .team_election{
 		width:300px;
 		text-align:center; 
+		margin-left:20px;
 		margin-bottom:5px;
 		margin-right:20px;
 		padding:5px;
@@ -498,6 +491,11 @@
 		font-weight:bold;
 	}
 	
+	#result_page .team_election #failed{
+		color:red;
+		font-weight:bold;
+	}
+	
 	#result_page div p{
 		margin-right:10px;
 		padding:2px;
@@ -505,7 +503,7 @@
 	}
 	
 	.view_button{
-		margin-left:30px;
+		margin-left:50px;
 	}
 	
 	
