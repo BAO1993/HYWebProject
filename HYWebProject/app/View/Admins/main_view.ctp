@@ -1,3 +1,5 @@
+<?php echo $this->Html->css('admin'); ?>
+
 <header>
             <div id="headerwrap">
                 <div <?= $hl['1'] ?>>1. Setup</div>
