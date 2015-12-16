@@ -7,7 +7,7 @@ App::uses('Security', 'Utility');
 
 class AdminsController extends AppController
 {
-	public $uses = array('Admin','Round','User','Result','Team');
+	public $uses = array('Admin','Round','User','Result','Team','TeamResult');
 	
 	public function adminLogin()
     {    	
@@ -271,7 +271,14 @@ class AdminsController extends AppController
     	//If the admin clicks on the "save" button, we register the results of the audition 
     	if(isset($this->request->data['AuditionForm']))
     	{
+    		//We update the status of the teams that were just eliminated in the database.
     		$this->Team->checkIfNowOutOfGame($this->request->data['AuditionForm']);
+    		
+    		//We store every result into the database
+    		$teamList = $this->Team->getTeamAndPrize();
+    		$teamListWithResult = $this->Result->saveResult($teamList);
+    		$this->TeamResult->saveTeamResult($teamListWithResult,$this->Session->read('currentRound'));
+    		
     		$this->Round->enableElection($this->Session->read('currentRound'));
     		
     		$this->Session->write('currentStep','Election');

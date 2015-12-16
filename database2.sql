@@ -35,7 +35,7 @@ CREATE TABLE rounds (
 );
 
 CREATE TABLE results (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,/* Same thing : id_result => id*/
+    id INT UNSIGNED PRIMARY KEY,/* Same thing : id_result => id*/
 	result  VARCHAR(50),
 	prize INT(20) NOT NULL DEFAULT 0 
 );
@@ -55,13 +55,13 @@ INSERT INTO admins (ip, login,password)
  VALUES
  ('42.42.42.42', 'bob','92cfceb39d57d914ed8b14d0e37643de0797ae56');
 
-INSERT INTO users (name, dept, inv_code)
+/*INSERT INTO users (name, dept, inv_code)
  VALUES
  ('bao', 'cs','a123456'),
  ('leau', 'cs','a123456'),
  ('tommy', 'cs','a123456');
 
-/*INSERT INTO teams (name, subject, out_game)
+INSERT INTO teams (name, subject, out_game)
  VALUES
  ('team1', 'we are the best', '0'),
  ('team2', 'YOHOHO','0'),

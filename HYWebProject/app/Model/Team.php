@@ -61,10 +61,14 @@ class Team extends AppModel
 											t.id = '.$id.' AND 
 											t.id = tr.id_team AND 
 											tr.id_result = r.id');
-				
+			
 				if($prize == array())
 				{
 					$prize = 0;
+				}
+				else 
+				{
+					$prize = $prize[0]['r']['prize'];
 				}
 				
 				if($tl[$i]['Team']['out_game'] == true)
