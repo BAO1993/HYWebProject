@@ -127,7 +127,7 @@
 	}
 	
 	#logout a{
-		color:gray;
+		color:black;
 	}
 	
 	#logout a:hover{
@@ -522,6 +522,7 @@
 		background-color:#ebebeb;
 		border:7px outset #9f9f9f;
 		border-radius:10px;
+		opacity:0.9;
 		float:left;
 	}
 	
