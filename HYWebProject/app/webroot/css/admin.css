@@ -3,7 +3,7 @@
 	
 	
 	html{
-		background-color: white;
+		background-image:url("../img/background1.jpg");
 	}
 
 	#logo img{
@@ -23,28 +23,32 @@
 		font-style:bold;
 	}
 	
-	#form,#AdminLoginFormAdminLoginForm{
-		font-family:Brown,"Verdana",sans-serif;
-		color:blue;
-		margin:auto;
-		margin-top:50px;
-		text-align:center;
+	form#AdminLoginFormAdminLoginForm{
 		width:300px;
-	}
-
-	#form input[type="text"],
-	#AdminLoginFormAdminLoginForm input[type="text"], 
-	#AdminLoginFormAdminLoginForm input[type="password"]
-	{
-		display:block;
+		font-family:Brown,"Verdana",sans-serif;
+		color:purple;
 		margin-left:auto;
 		margin-right:auto;
+		text-align:center;
 	}
-
-
+	
+	form#AdminLoginFormAdminLoginForm div:not(.submit){
+		font-weight:bold;
+		text-align:left;
+	}
+	
+	#AdminLoginFormId{
+		float:right;
+	}
+	
+	#AdminLoginFormPassword{
+		float:right;
+	}
+	
 	.submit input[type="submit"]
 	{
-		width:100px;
+		width:75px;
+		height:30px;
 		font-size:14px;
 	}
 
@@ -52,15 +56,14 @@
 	/*start to adminSetup */
 
 	header{
-		background-color:black;
+		background-color:#646464;
 		color:#FFFBF0;
-		overflow:auto;
 	}
 
 	#headerwrap{
-	margin:auto;
-	width:1300px;
-	font-family:Brown,"Verdana",sans-serif;
+		margin:auto;
+		width:1300px;
+		font-family:Brown,"Verdana",sans-serif;
 	}
 
 	#headerwrap div{
@@ -75,15 +78,14 @@
 		font-size:15px;
 	}
 	
-	
 	#headerwrap div:not(#welcome):not(#logout):hover{
-	color:#1cace2;
+	color:#000000;
 	cursor:pointer;
 	}
 	
 	#Highlight{
 		color:black;
-		background-color:orange;
+		background-color:purple;
 		font-weight:bold;
 	}
 	
@@ -100,23 +102,22 @@
 	}
 
 	#welcome{
-		color:#1cace2;
+		color:#ff0080;
 		float:right;
 		margin-left:150px;
 	}
 	
 	#welcome:hover{
 		cursor:pointer;
-		color:orange;
+		color:purple;
 	}
 	
-	#logout{
+	#logout a{
 		color:gray;
 	}
 	
-	#logout:hover{
+	#logout a:hover{
 		cursor:pointer;
-		color:orange;
 	}
 	
 	#content{
@@ -134,7 +135,7 @@
 		padding-left:20px;
 		padding-top:5px;
 		padding-bottom:20px;
-		border:5px solid orange;
+		border:5px solid purple;
 		border-radius:10px;
 	}
 	
@@ -218,7 +219,7 @@
 		padding-left:15px;
 		width:600px;
 		margin-left:40px;
-		border:5px solid orange;
+		border:5px solid purple;
 		border-radius:10px;
 	}
 	
@@ -281,7 +282,7 @@
 		padding-left:15px;
 		width:800px;
 		margin-left:40px;
-		border:5px solid orange;
+		border:5px solid purple;
 		border-radius:10px;
 	}
 	
@@ -317,7 +318,7 @@
 		padding:10px;
 		font-size:15px;
 		font-family:Black,"Verdana",sans-serif;
-		border:5px solid orange;
+		border:5px solid purple;
 		border-radius:10px;
 	}
 	
@@ -366,6 +367,24 @@
 		margin-top:0px;
 	}
 	
+	#AuditionFormMainViewForm .team_input #failed
+	{
+		color:red;
+		font-weight:bold;
+		border:2px solid red;
+		border-radius:5px;
+		margin-left: 7px;
+	}
+	
+	#AuditionFormMainViewForm .team_input #final
+	{
+		color:green;
+		font-weight:bold;
+		border:2px solid green;
+		border-radius:5px;
+		margin-left: 7px;
+	}
+	
 	/*
 		continue to form Election
 	*/
@@ -377,7 +396,7 @@
 		padding:10px;
 		font-size:15px;
 		font-family:Black,"Verdana",sans-serif;
-		border:5px solid orange;
+		border:5px solid purple;
 		border-radius:10px;
 	}
 	
@@ -415,9 +434,9 @@
 	}
 	
 	#ElectionFormMainViewForm .team_election #passed{
-		color:green;
+		color:blue;
 		font-weight:bold;
-		border:2px solid green;
+		border:2px solid blue;
 		border-radius:5px;
 	}
 	
@@ -427,6 +446,14 @@
 		border:2px solid red;
 		border-radius:5px;
 		margin-right: 21px;
+	}
+	
+	#ElectionFormMainViewForm .team_election #final{
+		color:green;
+		font-weight:bold;
+		border:2px solid green;
+		border-radius:5px;
+		margin-right: 31px;
 	}
 	
 	/*

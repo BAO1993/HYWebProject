@@ -28,17 +28,25 @@ class Team extends AppModel
 	public function checkIfNowOutOfGame($teamsListResults)
 	{
 		$dbTeamList = $this->find('all');
+		$counter = 0;
 		
-		for($i = 0; $i < count($teamsListResults); $i++)
-		{
-			//If the team failed...
-			if($teamsListResults['radio'.strval($i)] == '1')
+		for($i = 0; $i < count($dbTeamList); $i++)
+		{echo "\ni=".$i;
+		echo '\n$dbTeamList[$i][\'Team\'][\'out_game\']='.$dbTeamList[$i]['Team']['out_game'];
+		echo '\n$dbTeamList[$i][\'Team\'][\'in_final\']='.$dbTeamList[$i]['Team']['in_final'];
+			if($dbTeamList[$i]['Team']['out_game'] != '1' && $dbTeamList[$i]['Team']['in_final'] != '1')
 			{
-				$this->read(null, $dbTeamList[$i]['Team']['id']);
-				$this->set('out_game', true);
-				$this->save();
-				$this->clear();
+				//If the team failed...
+				if($teamsListResults['radio'.strval($counter)] == '1')
+				{
+					$this->read(null, $dbTeamList[$i]['Team']['id']);
+					$this->set('out_game', true);
+					$this->save();
+					$this->clear();
+				}
+				$counter++;
 			}
+			
 		}
 	}
 	

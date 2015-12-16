@@ -1,3 +1,5 @@
+<?php echo $this->Html->css('admin'); ?>
+
 <header>
             <div id="headerwrap">
                 <div <?= $hl['1'] ?>>1. Setup</div>
@@ -145,12 +147,23 @@ elseif($currentStep == 'Audition')
 			<p>Subject: </p><p><?= $teamList[$i]['Team']['subject'] ?></p>
 			
 			<?php
+			if($teamList[$i]['Team']['out_game'] == '1')//if the team is eliminated
+			{
+	?>			<p class="team_status" id="failed">Failed</p>  <?php
 			
-			echo $this->Form->input('radio'.strval($i), array(	'label' => false,
+			}
+			elseif($teamList[$i]['Team']['in_final'] == '1')//If the team was already sent to the final round
+			{
+	?>			<p class="team_status" id="final">Final</p>  <?php
+			}
+			else//if the team is not eliminated and not in final
+			{
+				echo $this->Form->input('radio'.strval($i), array(	'label' => false,
 																'legend' => false,
 																'type' => 'radio',
 																'value' => 0,
     															'options' => array('Pass', 'Fail')));
+			}
 
 			?>
 		</div>

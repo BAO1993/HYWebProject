@@ -57,7 +57,7 @@ class Round extends AppModel
 					else 
 					{
 						return array(	'case'=>3,
-										'text'=>"Round #".$roundNumber."is the last completed round. Next step is round #".$i,
+										'text'=>"Round #".$roundNumber." is the last completed round. The next step is round #".$i,
 										'currentRound'=>$i);
 					}
 				}

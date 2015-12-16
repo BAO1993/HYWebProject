@@ -272,9 +272,9 @@ class AdminsController extends AppController
     	if(isset($this->request->data['AuditionForm']))
     	{
     		$this->Team->checkIfNowOutOfGame($this->request->data['AuditionForm']);
-    		$this->Round->enableElection($this->Session->read('currentRound'));
+    		//$this->Round->enableElection($this->Session->read('currentRound'));
     		
-    		$this->Session->write('currentStep','Election');
+    		//$this->Session->write('currentStep','Election');
     		 
     		$this->redirect('mainView');
     	}
@@ -299,7 +299,7 @@ class AdminsController extends AppController
     	
     		$this->Team->sendToFinal($teamList, $this->request->data['ElectionForm']);
     		
-    		$this->Session->write('currentStep','View');
+    		$this->Session->write('currentStep','Result');
     		 
     		$this->redirect('mainView');
     	}
