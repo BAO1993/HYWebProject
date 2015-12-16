@@ -141,8 +141,8 @@ elseif($currentStep == 'Audition')
 	{?>
 		<div class="team_input">
 		
-			<p>Team Name: <em><?= $teamList[$i]['Team']['name'] ?></em></p>
-			<p>Subject: <em><?= $teamList[$i]['Team']['subject'] ?></em></p>
+			<p>Team Name: </p><p><?= $teamList[$i]['Team']['name'] ?></p>
+			<p>Subject: </p><p><?= $teamList[$i]['Team']['subject'] ?></p>
 			
 			<?php
 			
@@ -183,9 +183,9 @@ elseif($currentStep == 'Election')
 		?>
 		
 			<p class="team_status" <?= $id_status ?>><?= $teamList[$i]['status'] ?></p>
-			<p>Team Name: <em><?= $teamList[$i]['name'] ?></em></p>
-			<p>Subject: <em><?= $teamList[$i]['subject'] ?></em></p>
-			<p>Prize: <em><?= $teamList[$i]['prize'] ?></em></p>
+			<p>Team Name: </p><p><?= $teamList[$i]['name'] ?></p>
+			<p>Subject: </p><p><?= $teamList[$i]['subject'] ?></p>
+			<p>Prize: </p><p><?= $teamList[$i]['prize'] ?></p>
 			
 			<?php
 			if(!$isFinal)
