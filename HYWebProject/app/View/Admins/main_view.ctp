@@ -203,8 +203,15 @@ elseif($currentStep == 'Election')
 			<?php
 			if(!$isFinal)
 			{
-				echo $this->Form->checkbox($teamList[$i]['name']);
-				echo $this->Form->label('Send to final round ?');
+				if($teamList[$i]['status'] == "Passed")
+				{
+					echo $this->Form->checkbox($teamList[$i]['name']);
+					echo $this->Form->label('Send to final round ?');
+				}
+				else
+				{
+					echo $this->Form->hidden($teamList[$i]['name']);
+				}
 			}
 			?>
 			

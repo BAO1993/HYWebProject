@@ -10,7 +10,7 @@ class AdminsController extends AppController
 	public $uses = array('Admin','Round','User','Result','Team','TeamResult');
 	
 	public function adminLogin()
-    {    	
+    {
         //We check if the user clicks the submit button
         if(isset($this->request->data['AdminLoginForm']))
 		{
