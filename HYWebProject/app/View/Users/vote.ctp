@@ -41,6 +41,8 @@ $attributes = array('legend' => false,'default'=>'1');
 }
 else{
 echo "The vote is not started yet! Please try later.";
+echo $this->Html->link($this->Form->button('Log out'), array('controller'=> 'Users', 'action'=>'logout'), array('escape'=>false,'title' => "Click to view somethin"));
+
 }
 
 ?>
