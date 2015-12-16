@@ -141,8 +141,8 @@ elseif($currentStep == 'Audition')
 	{?>
 		<div class="team_input">
 		
-			<p>Team Name: <?= $teamList[$i]['Team']['name'] ?></p>
-			<p>Subject: <?= $teamList[$i]['Team']['subject'] ?></p>
+			<p>Team Name: <em><?= $teamList[$i]['Team']['name'] ?></em></p>
+			<p>Subject: <em><?= $teamList[$i]['Team']['subject'] ?></em></p>
 			
 			<?php
 			
