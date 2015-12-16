@@ -311,7 +311,7 @@
 	*/
 	
 	#AuditionFormMainViewForm{
-		width:1000px;
+		width:950px;
 		margin-top:20px;
 		margin-left:20px;
 		padding:10px;
@@ -322,39 +322,41 @@
 	}
 	
 	#AuditionFormMainViewForm .team_input{
+		width:900px;
 		margin-bottom:5px;
 		padding:5px;
 	}
 	
-	#AuditionFormMainViewForm div p:first-child{
-		width:250px;;
+	#AuditionFormMainViewForm div p{
 		float:left;
 		margin:0px;
 		margin-right:10px;
 		padding:2px;
-		border:2px solid #c0c0c0;
-		border-radius:5px;
 	}
 	
 	#AuditionFormMainViewForm div p:nth-child(2){
-		width:250px;
-		float:left;
-		margin:0px;
-		margin-right:10px;
-		padding:2px;
-		border:2px solid #c0c0c0;
+		border:2px solid gray;
 		border-radius:5px;
+		width:250px;
+	}
+	
+	#AuditionFormMainViewForm div p:nth-child(4){
+		border:2px solid gray;
+		border-radius:5px;
+		width:250px;
 	}
 	
 	#AuditionFormMainViewForm div div{
 		float:left;
+		margin:0px;
 		margin-right:10px;
-		padding:3px;
+		padding:2px;
 	}
 	
 	#AuditionFormMainViewForm div div input[type="radio"]:last-child{
-		margin-left:15px;
+		margin-left:10px;
 	}
+	
 	
 	#AuditionFormMainViewForm .submit{
 		padding:5px;
@@ -368,36 +370,62 @@
 		continue to form Election
 	*/
 	
-	#formElection{
+	#ElectionFormMainViewForm{
 		width:1200px;
-		margin-top:30px;
-		margin-left:100px;
+		margin-top:20px;
+		margin-left:20px;
+		padding:10px;
 		font-size:15px;
 		font-family:Black,"Verdana",sans-serif;
-		overflow:auto;
+		border:5px solid orange;
+		border-radius:10px;
 	}
 	
-	#formElection input[type="text"]:first-child{
-		margin-right:30px;
+	#ElectionFormMainViewForm .team_election{
+		width:1100px;
+		margin-bottom:5px;
+		padding:5px;
 	}
 	
-	#formElection input[type="text"]:nth-child(2){
-		width:300px;
-		margin-right:20px;
+	#ElectionFormMainViewForm .team_election input[type="checkbox"]{
+		margin-top:5px;
 	}
 	
-	#formElection input[type="text"]:nth-child(3){
-		width:80px;
-		margin-right:20px;
+	#ElectionFormMainViewForm .team-election label{
+		margin:0;
 	}
 	
-	#formElection p input[type="submit"]:nth-child(1){
-		width:75px;
+	#ElectionFormMainViewForm div p{
+		float:left;
+		margin:0px;
+		margin-right:10px;
+		padding:2px;
 	}
 	
-	#formElection #saveBtn{
-		float:right;
-		margin-right:392px;
+	#ElectionFormMainViewForm div p:nth-child(3){
+		border:2px solid gray;
+		border-radius:5px;
+		width:250px;
+	}
+	
+	#ElectionFormMainViewForm div p:nth-child(5){
+		border:2px solid gray;
+		border-radius:5px;
+		width:250px;
+	}
+	
+	#ElectionFormMainViewForm .team_election #passed{
+		color:green;
+		font-weight:bold;
+		border:2px solid green;
+		border-radius:5px;
+	}
+	
+	#ElectionFormMainViewForm .team_election #failed{
+		color:red;
+		font-weight:bold;
+		border:2px solid red;
+		border-radius:5px;
 	}
 	
 	/*
