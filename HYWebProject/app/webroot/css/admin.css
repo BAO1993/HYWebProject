@@ -436,6 +436,7 @@
 		width:1100px;
 		margin-bottom:5px;
 		padding:5px;
+		overflow:auto;
 	}
 	
 	#ElectionFormMainViewForm .team_election input[type="checkbox"]{
